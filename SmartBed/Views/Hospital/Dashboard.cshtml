@@ -1,0 +1,38 @@
+﻿@model SmartBed.Models.Hospital
+
+<h2>Hospital Dashboard</h2>
+
+<form asp-action="UpdateBeds" method="post">
+
+    <input type="hidden" asp-for="HospitalId" />
+
+    <div class="mb-3">
+        <label>Hospital Name</label>
+        <input asp-for="HospitalName" class="form-control" readonly />
+    </div>
+
+    <div class="mb-3">
+        <label>ICU Beds</label>
+        <input asp-for="ICUBeds" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Emergency Beds</label>
+        <input asp-for="EmergencyBeds" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>General Beds</label>
+        <input asp-for="GeneralBeds" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        Update Beds
+    </button>
+    <a asp-controller="Login"
+       asp-action="Logout"
+       class="btn btn-danger">
+        Logout
+    </a>
+
+</form>

@@ -1,0 +1,58 @@
+﻿@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h2>SmartBed Login</h2>
+
+<form method="post">
+
+    <div>
+        <label>Username</label><br />
+        <input type="text" name="username" class="form-control" required />
+    </div>
+
+    <br />
+
+    <div>
+        <label>Password</label><br />
+        <input type="password" name="password" class="form-control" required />
+    </div>
+
+    <br />
+
+    <div>
+        <label>Login As</label><br />
+        <select name="role" class="form-control">
+            <option>Admin</option>
+            <option>Hospital</option>
+            <option>User</option>
+        </select>
+    </div>
+
+    <div class="text-center mt-3">
+        Don't have an account?
+
+        <a asp-action="Register">
+            Register Here
+        </a>
+    </div>
+
+    <br />
+
+    <button type="submit" class="btn btn-primary">
+        Login
+    </button>
+
+</form>
+
+<br />
+
+<span style="color:red">
+    @ViewBag.Message
+</span>

@@ -1,0 +1,108 @@
+﻿@model IEnumerable<SmartBed.Models.Hospital>
+
+<h2>Available Hospital Beds</h2>
+<form method="get">
+    <div class="bg-white shadow rounded-4 p-4 mb-4">
+        <h2 class="fw-bold text-primary">
+            Welcome to SmartBed
+        </h2>
+
+        <p class="text-muted mb-0">
+            View real-time hospital bed availability across Kerala.
+        </p>
+    </div>
+    <div class="card shadow rounded-4 mb-4">
+
+        <div class="card-body">
+
+            <h5 class="mb-3">
+                <i class="bi bi-search"></i>
+                Search Hospital
+            </h5>
+
+            <div class="row">
+
+                <div class="col-md-8">
+                    <input type="text"
+                           name="search"
+                           class="form-control"
+                           placeholder="Search by Hospital Name or Location"
+                           value="@Context.Request.Query["search"]" />
+                </div>
+
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="bi bi-search"></i> Search
+                    </button>
+                </div>
+
+                <div class="col-md-2">
+                    <a asp-action="Dashboard" class="btn btn-secondary w-100">
+                        Reset
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</form>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-primary">
+        <tr>
+
+            <th>Hospital Name</th>
+            <th>Location</th>
+            <th>ICU Beds</th>
+            <th>Emergency Beds</th>
+            <th>General Beds</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.HospitalName</td>
+                <td>@item.Location</td>
+                <td>@item.ICUBeds</td>
+                <td>@item.EmergencyBeds</td>
+                <td>@item.GeneralBeds</td>
+                <td>
+                    @if (item.ICUBeds > 0 || item.EmergencyBeds > 0 || item.GeneralBeds > 0)
+                    {
+                        <span class="badge bg-success">Available</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger">Full</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-controller="Login"
+   asp-action="Logout"
+   class="btn btn-danger">
+    Logout
+</a>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js"></script>
+
+<script>
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/bedHub")
+        .build();
+
+    connection.on("ReceiveBedUpdate", function () {
+        location.reload();
+    });
+
+    connection.start().catch(function (err) {
+        return console.error(err.toString());
+    });
+</script>

@@ -1,0 +1,139 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+
+    
+/* ===== SmartBed Theme ===== */
+
+body {
+    background-color: #f4f9ff;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #0D3B66 !important;
+}
+
+.navbar-brand,
+.nav-link {
+    color: white !important;
+}
+
+    .nav-link:hover {
+        color: #d6ecff !important;
+    }
+
+/* Hero Section */
+/* Hero Section */
+.hero {
+    background: linear-gradient( rgba(13, 59, 102, 0.70), rgba(13, 59, 102, 0.70) ), url('/images/healthcare.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 90vh;
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+    .overlay h1 {
+        font-size: 4rem;
+        font-weight: 700;
+    }
+
+    .overlay h3 {
+        font-weight: 300;
+        margin-bottom: 20px;
+    }
+
+    .overlay p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: auto;
+    }
+
+/* Cards */
+.card {
+    background: white;
+    border: none;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0,0,0,.08);
+    transition: all .3s ease;
+}
+
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 35px rgba(0,0,0,.15);
+    }
+
+/* Buttons */
+.btn-primary {
+    background-color: #1565C0;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 28px;
+}
+
+    .btn-primary:hover {
+        background-color: #0D47A1;
+    }
+
+.btn-success {
+    background-color: #198754;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+/* Tables */
+.table {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+    .table thead {
+        background-color: #0D3B66;
+        color: white;
+    }
+
+    .table tbody tr:hover {
+        background-color: #eef6ff;
+    }
+
+/* Footer */
+footer {
+    background-color: #0d6efd;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 50px;
+}
