@@ -1,5 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using SmartBed.Data;
 using SmartBed.Models;
 
 namespace SmartBed.Controllers
@@ -7,14 +9,19 @@ namespace SmartBed.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+       
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
+            
         }
+
 
         public IActionResult Index()
         {
+           
+
             return View();
         }
 

@@ -47,38 +47,46 @@ body {
 /* Hero Section */
 /* Hero Section */
 .hero {
-    background: linear-gradient( rgba(13, 59, 102, 0.70), rgba(13, 59, 102, 0.70) ), url('/images/healthcare.jpg');
+    background: linear-gradient(rgba(10,45,85,.72), rgba(10,45,85,.72)), url('/images/healthcare.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 90vh;
+    min-height: 100vh;
 }
 
 .overlay {
-    width: 100%;
-    height: 100%;
+    min-height: 100vh;
     display: flex;
-    justify-content: center;
     align-items: center;
-    text-align: center;
+}
+
+.hero h1 {
+    font-size: 5rem;
+    font-weight: 800;
     color: white;
 }
 
-    .overlay h1 {
-        font-size: 4rem;
-        font-weight: 700;
-    }
+.hero h2 {
+    color: white;
+    font-weight: 300;
+}
 
-    .overlay h3 {
-        font-weight: 300;
-        margin-bottom: 20px;
-    }
+.hero p {
+    color: #F5F5F5;
+    line-height: 1.8;
+}
 
-    .overlay p {
-        font-size: 1.2rem;
-        max-width: 700px;
-        margin: auto;
-    }
+.btn-primary {
+    background: #1565C0;
+    border: none;
+    border-radius: 35px;
+    padding: 14px 35px;
+}
+
+.btn-outline-light {
+    border-radius: 35px;
+    padding: 14px 35px;
+}
 
 /* Cards */
 .card {
@@ -136,4 +144,25 @@ footer {
     text-align: center;
     padding: 15px;
     margin-top: 50px;
+}
+
+.dashboard-card {
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.08);
+}
+
+.stats-card {
+    transition: .3s;
+}
+
+    .stats-card:hover {
+        transform: translateY(-6px);
+    }
+
+.form-control {
+    border-radius: 10px;
+}
+
+.btn-primary {
+    border-radius: 30px;
 }
