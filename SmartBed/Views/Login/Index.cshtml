@@ -1,58 +1,278 @@
-﻿@if (TempData["Success"] != null)
-{
-    <div class="alert alert-success">
-        @TempData["Success"]
-    </div>
-}
 @{
     ViewData["Title"] = "Login";
 }
 
-<h2>SmartBed Login</h2>
+<div class="login-page">
 
-<form method="post">
+    <div class="login-container">
 
-    <div>
-        <label>Username</label><br />
-        <input type="text" name="username" class="form-control" required />
+        <!-- LEFT SIDE -->
+        <div class="login-info">
+
+            <div class="login-brand">
+                <i class="bi bi-hospital-fill"></i>
+                SmartBed
+            </div>
+
+            <h1>
+                Smart Healthcare.<br />
+                Smarter Decisions.
+            </h1>
+
+            <p>
+                Real-time hospital bed availability for faster
+                emergency patient management.
+            </p>
+
+            <div class="login-features">
+
+                <div>
+                    <i class="bi bi-heart-pulse-fill"></i>
+                    <span>Real-Time Bed Availability</span>
+                </div>
+
+                <div>
+                    <i class="bi bi-ambulance-fill"></i>
+                    <span>Emergency Patient Tracking</span>
+                </div>
+
+                <div>
+                    <i class="bi bi-broadcast"></i>
+                    <span>Live SignalR Updates</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+        <div class="login-card">
+
+            <div class="login-icon">
+                <i class="bi bi-person-fill"></i>
+            </div>
+
+            <h2>Welcome Back!</h2>
+
+            <p class="login-subtitle">
+                Sign in to your SmartBed account
+            </p>
+
+
+            <!-- SUCCESS MESSAGE -->
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show">
+                    <i class="bi bi-check-circle-fill"></i>
+                    @TempData["Success"]
+
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="alert">
+                    </button>
+                </div>
+            }
+
+
+            <!-- LOGIN FORM -->
+            <form method="post"
+                  asp-controller="Login"
+                  asp-action="Index"
+                  id="loginForm">
+
+                <!-- USERNAME -->
+                <div class="input-group-custom">
+
+                    <i class="bi bi-person"></i>
+
+                    <input type="text"
+                           name="username"
+                           id="username"
+                           class="form-control"
+                           placeholder="Username"
+                           maxlength="50"
+                           required />
+
+                </div>
+
+                <span id="usernameError"
+                      class="text-danger validation-message">
+                </span>
+
+
+                <!-- PASSWORD -->
+                <div class="input-group-custom">
+
+                    <i class="bi bi-lock"></i>
+
+                    <input type="password"
+                           name="password"
+                           id="password"
+                           class="form-control"
+                           placeholder="Password"
+                           maxlength="50"
+                           required />
+
+                </div>
+
+                <span id="passwordError"
+                      class="text-danger validation-message">
+                </span>
+
+
+                <!-- ROLE -->
+                <div class="input-group-custom">
+
+                    <i class="bi bi-person-badge"></i>
+
+                    <select name="role"
+                            id="role"
+                            class="form-control"
+                            required>
+
+                        <option value="">
+                            -- Select Role --
+                        </option>
+
+                        <option value="Admin">
+                            Admin
+                        </option>
+
+                        <option value="Hospital">
+                            Hospital
+                        </option>
+
+                        <option value="User">
+                            User
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <span id="roleError"
+                      class="text-danger validation-message">
+                </span>
+
+
+                <!-- REGISTER -->
+                <div class="register-text">
+
+                    Don't have an account?
+
+                    <a asp-action="Register">
+                        Register Here
+                    </a>
+
+                </div>
+
+
+                <!-- LOGIN BUTTON -->
+                <button type="submit"
+                        class="login-button">
+
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    Login
+
+                </button>
+
+            </form>
+
+
+            <!-- SERVER ERROR -->
+            @if (ViewBag.Message != null)
+            {
+                <div class="login-error">
+
+                    <i class="bi bi-exclamation-circle-fill"></i>
+
+                    @ViewBag.Message
+
+                </div>
+            }
+
+        </div>
+
     </div>
 
-    <br />
+</div>
 
-    <div>
-        <label>Password</label><br />
-        <input type="password" name="password" class="form-control" required />
-    </div>
 
-    <br />
+<script>
 
-    <div>
-        <label>Login As</label><br />
-        <select name="role" class="form-control">
-            <option>Admin</option>
-            <option>Hospital</option>
-            <option>User</option>
-        </select>
-    </div>
+    document.getElementById("loginForm").addEventListener("submit", function (event) {
 
-    <div class="text-center mt-3">
-        Don't have an account?
+        let valid = true;
 
-        <a asp-action="Register">
-            Register Here
-        </a>
-    </div>
+        // Get values
+        let username = document.getElementById("username").value.trim();
+        let password = document.getElementById("password").value.trim();
+        let role = document.getElementById("role").value;
 
-    <br />
+        // Error elements
+        let usernameError = document.getElementById("usernameError");
+        let passwordError = document.getElementById("passwordError");
+        let roleError = document.getElementById("roleError");
 
-    <button type="submit" class="btn btn-primary">
-        Login
-    </button>
+        // Clear previous errors
+        usernameError.innerText = "";
+        passwordError.innerText = "";
+        roleError.innerText = "";
 
-</form>
+        // Username validation
+        if (username === "") {
 
-<br />
+            usernameError.innerText =
+                "Username is required.";
 
-<span style="color:red">
-    @ViewBag.Message
-</span>
+            valid = false;
+
+        }
+        else if (username.length < 3) {
+
+            usernameError.innerText =
+                "Username must contain at least 3 characters.";
+
+            valid = false;
+
+        }
+
+        // Password validation
+        if (password === "") {
+
+            passwordError.innerText =
+                "Password is required.";
+
+            valid = false;
+
+        }
+        else if (password.length < 6) {
+
+            passwordError.innerText =
+                "Password must contain at least 6 characters.";
+
+            valid = false;
+
+        }
+
+        // Role validation
+        if (role === "") {
+
+            roleError.innerText =
+                "Please select a login role.";
+
+            valid = false;
+
+        }
+
+        // Stop form submission if validation fails
+        if (!valid) {
+
+            event.preventDefault();
+
+        }
+
+    });
+
+</script>
