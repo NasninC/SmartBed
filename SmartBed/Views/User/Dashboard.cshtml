@@ -1,45 +1,163 @@
-﻿@model IEnumerable<SmartBed.Models.Hospital>
+@model IEnumerable<SmartBed.Models.Hospital>
 
-<h2>Available Hospital Beds</h2>
-<form method="get">
-    <div class="bg-white shadow rounded-4 p-4 mb-4">
-        <h2 class="fw-bold text-primary">
-            Welcome to SmartBed
-        </h2>
+@{
+    ViewData["Title"] = "Hospital Dashboard";
 
-        <p class="text-muted mb-0">
-            View real-time hospital bed availability across Kerala.
-        </p>
+    var hospitals = Model.ToList();
+
+    var totalHospitals = hospitals.Count;
+
+    var availableHospitals = hospitals.Count(h =>
+        h.ICUBeds > 0 ||
+        h.EmergencyBeds > 0 ||
+        h.GeneralBeds > 0);
+
+    var totalICU = hospitals.Sum(h => h.ICUBeds);
+    var totalEmergency = hospitals.Sum(h => h.EmergencyBeds);
+    var totalGeneral = hospitals.Sum(h => h.GeneralBeds);
+
+    var totalBeds = totalICU + totalEmergency + totalGeneral;
+}
+
+
+<div class="user-dashboard">
+
+
+    <!-- =================================
+         HERO / WELCOME SECTION
+         ================================= -->
+
+    <div class="user-hero">
+
+        <div class="hero-content">
+
+            <span class="user-badge">
+                <i class="bi bi-broadcast"></i>
+                Real-Time Healthcare
+            </span>
+
+            <h1>
+                Find Available Hospital Beds
+            </h1>
+
+            <p>
+                Quickly find hospitals with available ICU,
+                Emergency and General beds across Kerala.
+            </p>
+
+        </div>
+
+
+        <div class="hero-icon">
+
+            <i class="bi bi-hospital-fill"></i>
+
+        </div>
+
     </div>
-    <div class="card shadow rounded-4 mb-4">
 
-        <div class="card-body">
 
-            <h5 class="mb-3">
-                <i class="bi bi-search"></i>
-                Search Hospital
-            </h5>
 
-            <div class="row">
+    <!-- =================================
+         STATISTICS
+         ================================= -->
 
-                <div class="col-md-8">
-                    <input type="text"
-                           name="search"
-                           class="form-control"
-                           placeholder="Search by Hospital Name or Location"
-                           value="@Context.Request.Query["search"]" />
+    <div class="row g-4 mb-4">
+
+
+        <!-- Hospitals -->
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="user-stat-card">
+
+                <div class="stat-icon blue">
+
+                    <i class="bi bi-hospital-fill"></i>
+
                 </div>
 
-                <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary w-100">
-                        <i class="bi bi-search"></i> Search
-                    </button>
+                <div>
+
+                    <span>Total Hospitals</span>
+
+                    <h2>@totalHospitals</h2>
+
                 </div>
 
-                <div class="col-md-2">
-                    <a asp-action="Dashboard" class="btn btn-secondary w-100">
-                        Reset
-                    </a>
+            </div>
+
+        </div>
+
+
+        <!-- Available -->
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="user-stat-card">
+
+                <div class="stat-icon green">
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+                </div>
+
+                <div>
+
+                    <span>Available Hospitals</span>
+
+                    <h2>@availableHospitals</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ICU -->
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="user-stat-card">
+
+                <div class="stat-icon red">
+
+                    <i class="bi bi-heart-pulse-fill"></i>
+
+                </div>
+
+                <div>
+
+                    <span>ICU Beds</span>
+
+                    <h2>@totalICU</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Total Beds -->
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="user-stat-card">
+
+                <div class="stat-icon purple">
+
+                    <i class="bi bi-grid-fill"></i>
+
+                </div>
+
+                <div>
+
+                    <span>Total Available Beds</span>
+
+                    <h2>@totalBeds</h2>
+
                 </div>
 
             </div>
@@ -48,61 +166,422 @@
 
     </div>
 
-</form>
 
-<table class="table table-bordered table-striped">
-    <thead class="table-primary">
-        <tr>
 
-            <th>Hospital Name</th>
-            <th>Location</th>
-            <th>ICU Beds</th>
-            <th>Emergency Beds</th>
-            <th>General Beds</th>
-            <th>Status</th>
-        </tr>
-    </thead>
+    <!-- =================================
+         SEARCH
+         ================================= -->
 
-    <tbody>
-        @foreach (var item in Model)
+    <div class="search-panel">
+
+        <div class="search-heading">
+
+            <div class="search-heading-icon">
+
+                <i class="bi bi-search"></i>
+
+            </div>
+
+            <div>
+
+                <h4>Find a Hospital</h4>
+
+                <p>
+                    Search by hospital name or location
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <form method="get">
+
+            <div class="row g-3">
+
+                <div class="col-lg-9">
+
+                    <div class="search-input">
+
+                        <i class="bi bi-search"></i>
+
+                        <input type="text"
+                               name="search"
+                               placeholder="Search hospital or location..."
+                               value="@Context.Request.Query["search"]" />
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-lg-3">
+
+                    <div class="search-buttons">
+
+                        <button type="submit"
+                                class="search-button">
+
+                            <i class="bi bi-search"></i>
+
+                            Search
+
+                        </button>
+
+                        <a asp-action="Dashboard"
+                           class="reset-button">
+
+                            <i class="bi bi-arrow-clockwise"></i>
+
+                            Reset
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+
+
+    <!-- =================================
+         HOSPITAL LIST HEADER
+         ================================= -->
+
+    <div class="hospital-list-header">
+
+        <div>
+
+            <h3>
+
+                <i class="bi bi-hospital"></i>
+
+                Available Hospitals
+
+            </h3>
+
+            <p>
+                Live bed availability
+            </p>
+
+        </div>
+
+
+        <div class="live-indicator">
+
+            <span></span>
+
+            LIVE UPDATES
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================
+         HOSPITAL CARDS
+         ================================= -->
+
+    <div class="row g-4">
+
+        @if (!hospitals.Any())
         {
-            <tr>
-                <td>@item.HospitalName</td>
-                <td>@item.Location</td>
-                <td>@item.ICUBeds</td>
-                <td>@item.EmergencyBeds</td>
-                <td>@item.GeneralBeds</td>
-                <td>
-                    @if (item.ICUBeds > 0 || item.EmergencyBeds > 0 || item.GeneralBeds > 0)
-                    {
-                        <span class="badge bg-success">Available</span>
-                    }
-                    else
-                    {
-                        <span class="badge bg-danger">Full</span>
-                    }
-                </td>
-            </tr>
+
+            <div class="col-12">
+
+                <div class="no-hospitals">
+
+                    <i class="bi bi-search"></i>
+
+                    <h4>No hospitals found</h4>
+
+                    <p>
+                        Try searching with a different
+                        hospital name or location.
+                    </p>
+
+                </div>
+
+            </div>
+
         }
-    </tbody>
-</table>
-<a asp-controller="Login"
-   asp-action="Logout"
-   class="btn btn-danger">
-    Logout
-</a>
+        else
+        {
+
+            foreach (var item in hospitals)
+            {
+
+                var isAvailable =
+                item.ICUBeds > 0 ||
+                item.EmergencyBeds > 0 ||
+                item.GeneralBeds > 0;
+
+                var hospitalTotal =
+                item.ICUBeds +
+                item.EmergencyBeds +
+                item.GeneralBeds;
+
+
+                <div class="col-lg-6">
+
+                    <div class="hospital-card">
+
+
+                        <!-- Card Header -->
+
+                        <div class="hospital-card-header">
+
+                            <div class="hospital-title">
+
+                                <div class="hospital-logo">
+
+                                    <i class="bi bi-hospital-fill"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <h4>
+                                        @item.HospitalName
+                                    </h4>
+
+                                    <p>
+
+                                        <i class="bi bi-geo-alt-fill"></i>
+
+                                        @item.Location
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            @if (isAvailable)
+                            {
+
+                                <span class="availability available">
+
+                                    <i class="bi bi-check-circle-fill"></i>
+
+                                    Available
+
+                                </span>
+
+                            }
+                            else
+                            {
+
+                                <span class="availability full">
+
+                                    <i class="bi bi-x-circle-fill"></i>
+
+                                    Full
+
+                                </span>
+
+                            }
+
+                        </div>
+
+
+
+                        <!-- Bed Information -->
+
+                        <div class="bed-grid">
+
+
+                            <!-- ICU -->
+
+                            <div class="bed-item">
+
+                                <div class="bed-item-icon icu">
+
+                                    <i class="bi bi-heart-pulse-fill"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <span>ICU</span>
+
+                                    <strong>
+                                        @item.ICUBeds
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Emergency -->
+
+                            <div class="bed-item">
+
+                                <div class="bed-item-icon emergency">
+
+                                    <i class="bi bi-ambulance-fill"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <span>Emergency</span>
+
+                                    <strong>
+                                        @item.EmergencyBeds
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- General -->
+
+                            <div class="bed-item">
+
+                                <div class="bed-item-icon general">
+
+                                    <i class="bi bi-hospital-fill"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <span>General</span>
+
+                                    <strong>
+                                        @item.GeneralBeds
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- Card Footer -->
+                        <!-- Card Footer -->
+
+                        <div class="hospital-card-footer">
+
+                            <span>
+                                <i class="bi bi-grid-3x3-gap-fill"></i>
+
+                                Total Beds:
+                                <strong>@hospitalTotal</strong>
+                            </span>
+
+
+                            @if (isAvailable)
+                            {
+                                <a asp-controller="Booking"
+                                   asp-action="Create"
+                                   asp-route-hospitalId="@item.HospitalId"
+                                   class="book-bed-btn">
+
+                                    <i class="bi bi-calendar-check"></i>
+                                    Book a Bed
+
+                                </a>
+                            }
+                            else
+                            {
+                                <span class="full-text">
+                                    <i class="bi bi-x-circle"></i>
+                                    Currently Full
+                                </span>
+                            }
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            }
+
+        }
+
+    </div>
+
+
+
+    <!-- =================================
+         SIGNALR STATUS
+         ================================= -->
+
+    <div class="realtime-bar">
+
+        <div class="realtime-icon">
+
+            <i class="bi bi-broadcast"></i>
+
+        </div>
+
+        <div>
+
+            <strong>
+                Real-Time Bed Updates
+            </strong>
+
+            <p>
+                Hospital bed availability automatically
+                updates without refreshing the page.
+            </p>
+
+        </div>
+
+        <div class="signal-status">
+
+            <span></span>
+
+            Connected
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =================================
+     SIGNALR
+     ================================= -->
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js"></script>
 
 <script>
-    const connection = new signalR.HubConnectionBuilder()
-        .withUrl("/bedHub")
-        .build();
+
+    const connection =
+        new signalR.HubConnectionBuilder()
+            .withUrl("/bedHub")
+            .build();
+
 
     connection.on("ReceiveBedUpdate", function () {
+
         location.reload();
+
     });
 
-    connection.start().catch(function (err) {
-        return console.error(err.toString());
-    });
+
+    connection.start()
+        .catch(function (err) {
+
+            console.error(err.toString());
+
+        });
+
 </script>
