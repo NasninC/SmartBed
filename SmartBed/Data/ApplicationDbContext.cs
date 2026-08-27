@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SmartBed.Models;
 
 namespace SmartBed.Data
@@ -15,5 +15,7 @@ namespace SmartBed.Data
         public DbSet<Hospital> Hospital { get; set; }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Booking> Bookings { get; set; }
     }
 }
