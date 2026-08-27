@@ -1,64 +1,197 @@
-﻿@model SmartBed.Models.User
+@model SmartBed.Models.User
 
 @{
     ViewData["Title"] = "Register";
 }
 
 <div class="container mt-5">
+
     <div class="row justify-content-center">
 
-        <div class="col-md-6">
+        <div class="col-md-6 col-lg-5">
 
-            <div class="card shadow">
+            <div class="card shadow-lg border-0 rounded-4">
 
-                <div class="card-header bg-primary text-white text-center">
-                    <h3>User Registration</h3>
+                <!-- HEADER -->
+
+                <div class="card-header bg-primary text-white text-center rounded-top-4 p-4">
+
+                    <i class="bi bi-person-plus-fill fs-1"></i>
+
+                    <h3 class="mt-2">
+                        Create Your Account
+                    </h3>
+
+                    <p class="mb-0">
+                        Register with SmartBed
+                    </p>
+
                 </div>
 
-                <div class="card-body">
 
-                    <form asp-action="Register" method="post">
+                <div class="card-body p-4">
+
+
+                    <!-- VALIDATION SUMMARY -->
+
+                    <div asp-validation-summary="ModelOnly"
+                         class="text-danger mb-3">
+                    </div>
+
+
+                    <form asp-action="Register"
+                          method="post">
+
+
+                        <!-- FULL NAME -->
 
                         <div class="mb-3">
-                            <label asp-for="FullName"></label>
-                            <input asp-for="FullName" class="form-control" />
-                            <span asp-validation-for="FullName" class="text-danger"></span>
+
+                            <label asp-for="FullName"
+                                   class="form-label fw-semibold">
+
+                                <i class="bi bi-person-fill"></i>
+                                Full Name
+
+                            </label>
+
+                            <input asp-for="FullName"
+                                   class="form-control"
+                                   placeholder="Enter your full name"
+                                   maxlength="100" />
+
+                            <span asp-validation-for="FullName"
+                                  class="text-danger">
+                            </span>
+
                         </div>
 
-                        <div class="mb-3">
-                            <label asp-for="Email"></label>
-                            <input asp-for="Email" class="form-control" />
-                            <span asp-validation-for="Email" class="text-danger"></span>
-                        </div>
+
+                        <!-- EMAIL -->
 
                         <div class="mb-3">
-                            <label asp-for="Phone"></label>
-                            <input asp-for="Phone" class="form-control" />
+
+                            <label asp-for="Email"
+                                   class="form-label fw-semibold">
+
+                                <i class="bi bi-envelope-fill"></i>
+                                Email
+
+                            </label>
+
+                            <input asp-for="Email"
+                                   class="form-control"
+                                   type="email"
+                                   placeholder="Enter your email" />
+
+                            <span asp-validation-for="Email"
+                                  class="text-danger">
+                            </span>
+
                         </div>
 
-                        <div class="mb-3">
-                            <label asp-for="Username"></label>
-                            <input asp-for="Username" class="form-control" />
-                            <span asp-validation-for="Username" class="text-danger"></span>
-                        </div>
+
+                        <!-- PHONE -->
 
                         <div class="mb-3">
-                            <label asp-for="Password"></label>
+
+                            <label asp-for="Phone"
+                                   class="form-label fw-semibold">
+
+                                <i class="bi bi-telephone-fill"></i>
+                                Phone Number
+
+                            </label>
+
+                            <input asp-for="Phone"
+                                   class="form-control"
+                                   type="tel"
+                                   placeholder="Enter 10-digit phone number"
+                                   maxlength="10"
+                                   inputmode="numeric" />
+
+                            <span asp-validation-for="Phone"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+
+                        <!-- USERNAME -->
+
+                        <div class="mb-3">
+
+                            <label asp-for="Username"
+                                   class="form-label fw-semibold">
+
+                                <i class="bi bi-person-badge-fill"></i>
+                                Username
+
+                            </label>
+
+                            <input asp-for="Username"
+                                   class="form-control"
+                                   placeholder="Choose a username"
+                                   maxlength="50" />
+
+                            <span asp-validation-for="Username"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+
+                        <!-- PASSWORD -->
+
+                        <div class="mb-3">
+
+                            <label asp-for="Password"
+                                   class="form-label fw-semibold">
+
+                                <i class="bi bi-lock-fill"></i>
+                                Password
+
+                            </label>
+
                             <input asp-for="Password"
                                    type="password"
-                                   class="form-control" />
-                            <span asp-validation-for="Password" class="text-danger"></span>
+                                   class="form-control"
+                                   placeholder="Enter password"
+                                   maxlength="50" />
+
+                            <span asp-validation-for="Password"
+                                  class="text-danger">
+                            </span>
+
                         </div>
 
-                        <button type="submit" class="btn btn-primary w-100">
+
+                        <!-- REGISTER BUTTON -->
+
+                        <button type="submit"
+                                class="btn btn-primary w-100 py-2">
+
+                            <i class="bi bi-person-plus-fill"></i>
                             Register
+
                         </button>
 
                     </form>
 
-                    <div class="text-center mt-3">
+
+                    <!-- LOGIN -->
+
+                    <div class="text-center mt-4">
+
                         Already have an account?
-                        <a asp-action="Index">Login</a>
+
+                        <a asp-action="Index"
+                           class="fw-semibold text-primary">
+
+                            Login
+
+                        </a>
+
                     </div>
 
                 </div>
@@ -68,10 +201,14 @@
         </div>
 
     </div>
+
 </div>
 
+
 @section Scripts {
+
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+
 }
