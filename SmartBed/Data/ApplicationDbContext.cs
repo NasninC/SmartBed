@@ -17,5 +17,6 @@ namespace SmartBed.Data
         public DbSet<User> Users { get; set; }
 
         public DbSet<Booking> Bookings { get; set; }
+        public DbSet<HospitalRating> HospitalRatings { get; set; }
     }
 }
