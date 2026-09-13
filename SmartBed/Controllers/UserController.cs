@@ -15,7 +15,9 @@ namespace SmartBed.Controllers
 
         public IActionResult Dashboard(string search)
         {
-            var hospitals = _context.Hospital.AsQueryable();
+            var hospitals = _context.Hospital
+                .Where(h => h.VerificationStatus == "Verified")
+                .AsQueryable();
 
             if (!string.IsNullOrEmpty(search))
             {
@@ -24,7 +26,19 @@ namespace SmartBed.Controllers
                     h.Location.Contains(search));
             }
 
-            return View(hospitals.ToList());
+            var hospitalList = hospitals.ToList();
+
+            ViewBag.Ratings = _context.HospitalRatings
+                .GroupBy(r => r.HospitalId)
+                .ToDictionary(
+                    g => g.Key,
+                    g => new
+                    {
+                        Average = g.Average(r => r.Rating),
+                        Count = g.Count()
+                    });
+
+            return View(hospitalList);
         }
     }
 }
