@@ -1,0 +1,352 @@
+@{
+    ViewData["Title"] = "Book a Bed";
+    var hospital = ViewBag.Hospital as SmartBed.Models.Hospital;
+}
+
+<div class="booking-page">
+
+    <div class="container py-5">
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-7 col-md-9">
+
+                <div class="booking-card">
+
+                    <!-- Header -->
+                    <div class="booking-header">
+
+                        <div class="booking-icon">
+                            <i class="bi bi-calendar-check-fill"></i>
+                        </div>
+
+                        <div>
+                            <h2>Book a Hospital Bed</h2>
+
+                            <p>
+                                Reserve an available bed for the patient
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Hospital Information -->
+                    <div class="hospital-info">
+
+                        <div class="hospital-info-icon">
+                            <i class="bi bi-hospital-fill"></i>
+                        </div>
+
+                        <div>
+
+                            <h4>
+                                @hospital.HospitalName
+                            </h4>
+
+                            <p>
+                                <i class="bi bi-geo-alt-fill"></i>
+                                @hospital.Location
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Error Message -->
+                    @if (ViewBag.Message != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show">
+
+                            <i class="bi bi-exclamation-triangle-fill"></i>
+
+                            @ViewBag.Message
+
+                            <button type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="alert">
+                            </button>
+
+                        </div>
+                    }
+
+
+                    <!-- Booking Form -->
+                    <form asp-action="Create"
+                          asp-controller="Booking"
+                          method="post"
+                          id="bookingForm">
+
+                        <input type="hidden"
+                               name="hospitalId"
+                               value="@hospital.HospitalId" />
+
+
+                        <!-- Patient Name -->
+                        <div class="form-group mb-3">
+
+                            <label>
+                                <i class="bi bi-person-fill"></i>
+                                Patient Name
+                            </label>
+
+                            <input type="text"
+                                   name="patientName"
+                                   id="patientName"
+                                   class="form-control"
+                                   placeholder="Enter patient name"
+                                   maxlength="100"
+                                   pattern="[A-Za-z ]+"
+                                   title="Patient name should contain letters and spaces only."
+                                   required />
+
+                            <small class="text-danger"
+                                   id="patientNameError">
+                            </small>
+
+                        </div>
+
+
+                        <!-- Patient Age -->
+                        <div class="form-group mb-3">
+
+                            <label>
+                                <i class="bi bi-calendar3"></i>
+                                Patient Age
+                            </label>
+
+                            <input type="number"
+                                   name="patientAge"
+                                   id="patientAge"
+                                   class="form-control"
+                                   placeholder="Enter patient age"
+                                   min="1"
+                                   max="120"
+                                   required />
+
+                            <small class="text-danger"
+                                   id="patientAgeError">
+                            </small>
+
+                        </div>
+
+
+                        <!-- Phone -->
+                        <div class="form-group mb-3">
+
+                            <label>
+                                <i class="bi bi-telephone-fill"></i>
+                                Contact Number
+                            </label>
+
+                            <input type="tel"
+                                   name="phone"
+                                   id="phone"
+                                   class="form-control"
+                                   placeholder="Enter 10-digit contact number"
+                                   maxlength="10"
+                                   minlength="10"
+                                   pattern="[0-9]{10}"
+                                   inputmode="numeric"
+                                   required />
+
+                            <small class="text-danger"
+                                   id="phoneError">
+                            </small>
+
+                        </div>
+
+
+                        <!-- Bed Type -->
+                        <div class="form-group mb-3">
+
+                            <label>
+                                <i class="bi bi-hospital"></i>
+                                Select Bed Type
+                            </label>
+
+                            <select name="bedType"
+                                    id="bedType"
+                                    class="form-select"
+                                    required>
+
+                                <option value="">
+                                    -- Select Bed Type --
+                                </option>
+
+                                @if (hospital.ICUBeds > 0)
+                                {
+                                    <option value="ICU">
+                                        ICU Bed — @hospital.ICUBeds available
+                                    </option>
+                                }
+
+                                @if (hospital.EmergencyBeds > 0)
+                                {
+                                    <option value="Emergency">
+                                        Emergency Bed —
+                                        @hospital.EmergencyBeds available
+                                    </option>
+                                }
+
+                                @if (hospital.GeneralBeds > 0)
+                                {
+                                    <option value="General">
+                                        General Bed —
+                                        @hospital.GeneralBeds available
+                                    </option>
+                                }
+
+                            </select>
+
+                            <small class="text-danger"
+                                   id="bedTypeError">
+                            </small>
+
+                        </div>
+
+
+                        <!-- Buttons -->
+                        <div class="booking-buttons">
+
+                            <button type="submit"
+                                    class="confirm-booking">
+
+                                <i class="bi bi-check-circle-fill"></i>
+                                Confirm Booking
+
+                            </button>
+
+                            <a asp-controller="User"
+                               asp-action="Dashboard"
+                               class="cancel-booking">
+
+                                <i class="bi bi-arrow-left"></i>
+                                Back
+
+                            </a>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    const form = document.getElementById("bookingForm");
+
+    form.addEventListener("submit", function (event) {
+
+        let valid = true;
+
+        const patientName =
+            document.getElementById("patientName");
+
+        const patientAge =
+            document.getElementById("patientAge");
+
+        const phone =
+            document.getElementById("phone");
+
+        const bedType =
+            document.getElementById("bedType");
+
+
+        // Clear previous errors
+        document.getElementById("patientNameError").textContent = "";
+        document.getElementById("patientAgeError").textContent = "";
+        document.getElementById("phoneError").textContent = "";
+        document.getElementById("bedTypeError").textContent = "";
+
+
+        // Patient Name
+        const namePattern = /^[A-Za-z ]+$/;
+
+        if (patientName.value.trim() === "") {
+
+            document.getElementById("patientNameError").textContent =
+                "Patient name is required.";
+
+            valid = false;
+
+        }
+        else if (!namePattern.test(patientName.value.trim())) {
+
+            document.getElementById("patientNameError").textContent =
+                "Patient name should contain letters and spaces only.";
+
+            valid = false;
+        }
+
+
+        // Patient Age
+        const age = parseInt(patientAge.value);
+
+        if (patientAge.value === "") {
+
+            document.getElementById("patientAgeError").textContent =
+                "Patient age is required.";
+
+            valid = false;
+
+        }
+        else if (age < 1 || age > 120) {
+
+            document.getElementById("patientAgeError").textContent =
+                "Age must be between 1 and 120.";
+
+            valid = false;
+        }
+
+
+        // Phone
+        const phonePattern = /^[0-9]{10}$/;
+
+        if (phone.value.trim() === "") {
+
+            document.getElementById("phoneError").textContent =
+                "Contact number is required.";
+
+            valid = false;
+
+        }
+        else if (!phonePattern.test(phone.value.trim())) {
+
+            document.getElementById("phoneError").textContent =
+                "Contact number must contain exactly 10 digits.";
+
+            valid = false;
+        }
+
+
+        // Bed Type
+        if (bedType.value === "") {
+
+            document.getElementById("bedTypeError").textContent =
+                "Please select a bed type.";
+
+            valid = false;
+        }
+
+
+        // Stop form submission if invalid
+        if (!valid) {
+
+            event.preventDefault();
+
+        }
+
+    });
+
+</script>
