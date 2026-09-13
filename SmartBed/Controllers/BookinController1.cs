@@ -31,8 +31,9 @@ namespace SmartBed.Controllers
 
             // Find selected hospital
             var hospital = _context.Hospital
-                .FirstOrDefault(h => h.HospitalId == hospitalId);
-
+     .FirstOrDefault(h =>
+         h.HospitalId == hospitalId &&
+         h.VerificationStatus == "Verified");
             if (hospital == null)
             {
                 return NotFound();
@@ -311,6 +312,128 @@ namespace SmartBed.Controllers
             ViewBag.Hospital = hospital;
 
             return View(booking);
+        }
+        public IActionResult Rate(int id)
+        {
+            int? userId = HttpContext.Session.GetInt32("UserId");
+
+            if (userId == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            var booking = _context.Bookings
+                .FirstOrDefault(b =>
+                    b.BookingId == id &&
+                    b.UserId == userId.Value &&
+                    b.Status == "Confirmed");
+
+            if (booking == null)
+            {
+                return NotFound();
+            }
+
+            var hospital = _context.Hospital
+                .FirstOrDefault(h => h.HospitalId == booking.HospitalId);
+
+            if (hospital == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.Hospital = hospital;
+            ViewBag.BookingId = booking.BookingId;
+
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Rate(
+    int bookingId,
+    int rating,
+    string comment)
+        {
+            int? userId = HttpContext.Session.GetInt32("UserId");
+
+            if (userId == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            if (rating < 1 || rating > 5)
+            {
+                ViewBag.Message = "Please select a rating between 1 and 5.";
+
+                var bookingForError = _context.Bookings
+                    .FirstOrDefault(b =>
+                        b.BookingId == bookingId &&
+                        b.UserId == userId.Value);
+
+                if (bookingForError != null)
+                {
+                    ViewBag.Hospital = _context.Hospital
+                        .FirstOrDefault(h =>
+                            h.HospitalId == bookingForError.HospitalId);
+                }
+
+                return View();
+            }
+
+            var booking = _context.Bookings
+                .FirstOrDefault(b =>
+                    b.BookingId == bookingId &&
+                    b.UserId == userId.Value &&
+                    b.Status == "Confirmed");
+
+            if (booking == null)
+            {
+                return NotFound();
+            }
+
+            // Prevent the same user from rating the same booking twice
+            var existingRating = _context.HospitalRatings
+                .FirstOrDefault(r =>
+                    r.UserId == userId.Value &&
+                    r.HospitalId == booking.HospitalId);
+
+            if (existingRating != null)
+            {
+                ViewBag.Message = "You have already rated this hospital.";
+
+                ViewBag.Hospital = _context.Hospital
+                    .FirstOrDefault(h =>
+                        h.HospitalId == booking.HospitalId);
+
+                return View();
+            }
+
+            var hospital = _context.Hospital
+                .FirstOrDefault(h =>
+                    h.HospitalId == booking.HospitalId);
+
+            if (hospital == null)
+            {
+                return NotFound();
+            }
+
+            var hospitalRating = new HospitalRating
+            {
+                HospitalId = hospital.HospitalId,
+                UserId = userId.Value,
+                Rating = rating,
+                Comment = comment ?? string.Empty,
+                RatingDate = DateTime.Now
+            };
+
+            _context.HospitalRatings.Add(hospitalRating);
+
+            _context.SaveChanges();
+
+            TempData["RatingSuccess"] =
+                "Thank you! Your rating has been submitted successfully.";
+
+            return RedirectToAction(
+                "Confirmation",
+                new { id = booking.BookingId });
         }
     }
 }
