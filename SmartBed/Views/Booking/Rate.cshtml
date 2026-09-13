@@ -1,0 +1,89 @@
+@{
+    ViewData["Title"] = "Rate Hospital";
+    var hospital = ViewBag.Hospital as SmartBed.Models.Hospital;
+}
+
+<div class="rating-page">
+
+    <div class="rating-card">
+
+        <div class="rating-icon">
+            <i class="bi bi-star-fill"></i>
+        </div>
+
+        <h2>Rate Hospital</h2>
+
+        <p class="text-muted">
+            Share your experience with
+            <strong>@hospital?.HospitalName</strong>
+        </p>
+
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert alert-warning">
+                @ViewBag.Message
+            </div>
+        }
+
+        <form asp-action="Rate" method="post">
+
+            <input type="hidden"
+                   name="bookingId"
+                   value="@ViewBag.BookingId" />
+
+            <div class="mb-4">
+
+                <label class="form-label">
+                    Your Rating
+                </label>
+
+                <select name="rating"
+                        class="form-select"
+                        required>
+
+                    <option value="">Select Rating</option>
+                    <option value="5">★★★★★ - Excellent</option>
+                    <option value="4">★★★★ - Very Good</option>
+                    <option value="3">★★★ - Good</option>
+                    <option value="2">★★ - Fair</option>
+                    <option value="1">★ - Poor</option>
+
+                </select>
+
+            </div>
+
+            <div class="mb-4">
+
+                <label class="form-label">
+                    Comment
+                </label>
+
+                <textarea name="comment"
+                          class="form-control"
+                          rows="4"
+                          maxlength="500"
+                          placeholder="Share your experience..."></textarea>
+
+            </div>
+
+            <button type="submit"
+                    class="btn btn-primary w-100">
+
+                <i class="bi bi-star-fill"></i>
+                Submit Rating
+
+            </button>
+
+        </form>
+
+        <a asp-action="Confirmation"
+           asp-route-id="@ViewBag.BookingId"
+           class="btn btn-outline-secondary w-100 mt-2">
+
+            Back to Confirmation
+
+        </a>
+
+    </div>
+
+</div>
