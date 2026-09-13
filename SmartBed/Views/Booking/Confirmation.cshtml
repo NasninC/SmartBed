@@ -1,0 +1,211 @@
+@model SmartBed.Models.Booking
+
+@{
+    ViewData["Title"] = "Booking Confirmed";
+    var hospital = ViewBag.Hospital as SmartBed.Models.Hospital;
+}
+
+<div class="confirmation-page">
+
+    <div class="container py-5">
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-7 col-md-9">
+
+                <div class="confirmation-card">
+
+                    <!-- Success Icon -->
+
+                    <div class="success-icon">
+                        <i class="bi bi-check-lg"></i>
+                    </div>
+
+                    <h1>Booking Confirmed!</h1>
+
+                    <p class="confirmation-message">
+                        Your hospital bed has been successfully booked.
+                    </p>
+
+
+                    <!-- Booking ID -->
+
+                    <div class="booking-id">
+                        <span>Booking ID</span>
+
+                        <strong>
+                            #@Model.BookingId
+                        </strong>
+                    </div>
+
+
+                    <!-- Hospital Details -->
+
+                    <div class="confirmation-section">
+
+                        <h5>
+                            <i class="bi bi-hospital-fill"></i>
+                            Hospital Details
+                        </h5>
+
+                        <div class="detail-row">
+
+                            <span>Hospital</span>
+
+                            <strong>
+                                @hospital?.HospitalName
+                            </strong>
+
+                        </div>
+
+                        <div class="detail-row">
+
+                            <span>Location</span>
+
+                            <strong>
+                                <i class="bi bi-geo-alt-fill"></i>
+                                @hospital?.Location
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Patient Details -->
+
+                    <div class="confirmation-section">
+
+                        <h5>
+                            <i class="bi bi-person-fill"></i>
+                            Patient Details
+                        </h5>
+
+                        <div class="detail-row">
+
+                            <span>Patient Name</span>
+
+                            <strong>
+                                @Model.PatientName
+                            </strong>
+
+                        </div>
+
+                        <div class="detail-row">
+
+                            <span>Age</span>
+
+                            <strong>
+                                @Model.PatientAge years
+                            </strong>
+
+                        </div>
+
+                        <div class="detail-row">
+
+                            <span>Phone</span>
+
+                            <strong>
+                                @Model.Phone
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Bed Details -->
+
+                    <div class="bed-confirmed">
+
+                        <div class="bed-icon">
+
+                            @if (Model.BedType == "ICU")
+                            {
+                                <i class="bi bi-heart-pulse-fill"></i>
+                            }
+                            else if (Model.BedType == "Emergency")
+                            {
+                                <i class="bi bi-ambulance-fill"></i>
+                            }
+                            else
+                            {
+                                <i class="bi bi-hospital-fill"></i>
+                            }
+
+                        </div>
+
+                        <div>
+
+                            <small>Reserved Bed</small>
+
+                            <h4>
+                                @Model.BedType Bed
+                            </h4>
+
+                        </div>
+
+                        <span class="confirmed-badge">
+                            <i class="bi bi-check-circle-fill"></i>
+                            Confirmed
+                        </span>
+
+                    </div>
+
+
+                    <!-- Booking Date -->
+
+                    <div class="booking-date">
+
+                        <i class="bi bi-clock-fill"></i>
+
+                        Booked on
+                        @Model.BookingDate.ToString("dd MMM yyyy, hh:mm tt")
+
+                    </div>
+
+
+                    <!-- Buttons -->
+
+                    <div class="confirmation-buttons">
+
+                        <a asp-controller="User"
+                           asp-action="Dashboard"
+                           class="btn-dashboard">
+
+                            <i class="bi bi-grid-fill"></i>
+                            Back to Dashboard
+
+                        </a>
+
+                        <button onclick="window.print()"
+                                class="btn-print">
+
+                            <i class="bi bi-printer-fill"></i>
+                            Print
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<div class="mt-4 text-center">
+
+    <a asp-action="Rate"
+       asp-route-id="@Model.BookingId"
+       class="btn btn-warning">
+
+        <i class="bi bi-star-fill"></i>
+        Rate Hospital
+
+    </a>
+
+</div>
