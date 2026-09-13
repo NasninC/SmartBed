@@ -143,7 +143,7 @@ footer {
     color: white;
     text-align: center;
     padding: 15px;
-    margin-top: 50px;
+    margin-top: 0;
 }
 
 .dashboard-card {
@@ -166,3 +166,3528 @@ footer {
 .btn-primary {
     border-radius: 30px;
 }
+/* =========================================
+   SMARTBED LOGIN PAGE
+   ========================================= */
+
+.login-page {
+    min-height: calc(100vh - 60px);
+    background: linear-gradient(135deg, #eef7ff, #f8fbff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 45px 20px;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 1050px;
+    min-height: 580px;
+    background: white;
+    border-radius: 25px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    box-shadow: 0 20px 50px rgba(0, 60, 120, 0.15);
+}
+
+
+/* =========================
+   LEFT SIDE
+   ========================= */
+
+.login-info {
+    background: linear-gradient(145deg, #0D3B66, #1565C0);
+    color: white;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-brand {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 55px;
+}
+
+    .login-brand i {
+        margin-right: 10px;
+    }
+
+.login-info h1 {
+    font-size: 42px;
+    line-height: 1.2;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.login-info > p {
+    font-size: 17px;
+    line-height: 1.7;
+    opacity: 0.9;
+    max-width: 430px;
+}
+
+
+/* Features */
+
+.login-features {
+    margin-top: 35px;
+}
+
+    .login-features div {
+        display: flex;
+        align-items: center;
+        margin-bottom: 18px;
+        font-size: 15px;
+    }
+
+    .login-features i {
+        width: 42px;
+        height: 42px;
+        background: rgba(255,255,255,0.15);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        font-size: 18px;
+    }
+
+
+/* =========================
+   RIGHT SIDE
+   ========================= */
+
+.login-card {
+    padding: 55px 65px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-icon {
+    width: 65px;
+    height: 65px;
+    background: #e8f3ff;
+    color: #1565C0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.login-card h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #0D3B66;
+    margin-bottom: 8px;
+}
+
+.login-subtitle {
+    color: #718096;
+    margin-bottom: 30px;
+}
+
+
+/* =========================
+   LOGIN INPUTS
+   ========================= */
+
+.input-group-custom {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+    .input-group-custom i {
+        position: absolute;
+        left: 17px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #6c8ba4;
+        z-index: 2;
+        font-size: 17px;
+    }
+
+    .input-group-custom .form-control {
+        height: 52px;
+        padding-left: 48px;
+        border: 1px solid #d8e3ed;
+        border-radius: 12px;
+        background: #f8fbfe;
+        font-size: 15px;
+    }
+
+        .input-group-custom .form-control:focus {
+            border-color: #1565C0;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(21,101,192,0.12);
+        }
+
+
+/* =========================
+   REGISTER LINK
+   ========================= */
+
+.register-text {
+    text-align: center;
+    color: #66788a;
+    font-size: 14px;
+    margin: 10px 0 25px;
+}
+
+    .register-text a {
+        color: #1565C0;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+        .register-text a:hover {
+            text-decoration: underline;
+        }
+
+
+/* =========================
+   LOGIN BUTTON
+   ========================= */
+
+.login-button {
+    width: 100%;
+    height: 52px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient( 135deg, #1565C0, #0D47A1 );
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+    .login-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(13,110,253,0.3);
+    }
+
+    .login-button i {
+        margin-right: 8px;
+    }
+
+
+/* =========================
+   LOGIN ERROR
+   ========================= */
+
+.login-error {
+    color: #dc3545;
+    background: #fff0f0;
+    border: 1px solid #ffd0d0;
+    border-radius: 10px;
+    padding: 12px;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 768px) {
+
+    .login-container {
+        grid-template-columns: 1fr;
+    }
+
+    .login-info {
+        padding: 40px;
+    }
+
+        .login-info h1 {
+            font-size: 32px;
+        }
+
+    .login-brand {
+        margin-bottom: 30px;
+    }
+
+    .login-card {
+        padding: 40px 30px;
+    }
+}
+/* =========================================
+   HOSPITAL DASHBOARD
+   ========================================= */
+
+.hospital-dashboard {
+    padding: 35px 20px 60px;
+    background: #f4f8fc;
+    min-height: calc(100vh - 70px);
+}
+
+
+/* =========================
+   DASHBOARD HEADER
+   ========================= */
+
+.dashboard-header {
+    background: linear-gradient(135deg, #0D3B66, #1565C0);
+    color: white;
+    border-radius: 24px;
+    padding: 35px 40px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 12px 30px rgba(13, 59, 102, .18);
+}
+
+.dashboard-badge {
+    display: inline-block;
+    background: rgba(255,255,255,.15);
+    padding: 7px 15px;
+    border-radius: 30px;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.dashboard-header h1 {
+    font-size: 34px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.dashboard-header p {
+    margin: 0;
+    opacity: .9;
+    max-width: 600px;
+}
+
+.hospital-icon {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+}
+
+
+/* =========================
+   BED STAT CARDS
+   ========================= */
+
+.bed-stat-card {
+    padding: 25px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    min-height: 150px;
+    color: white;
+    transition: .3s;
+    box-shadow: 0 8px 22px rgba(0,0,0,.08);
+}
+
+    .bed-stat-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 30px rgba(0,0,0,.12);
+    }
+
+.icu-card {
+    background: linear-gradient(135deg, #c62828, #ef5350);
+}
+
+.emergency-card {
+    background: linear-gradient(135deg, #1565C0, #42a5f5);
+}
+
+.general-card {
+    background: linear-gradient(135deg, #16805c, #34a853);
+}
+
+.bed-icon {
+    width: 65px;
+    height: 65px;
+    background: rgba(255,255,255,.18);
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin-right: 20px;
+}
+
+.bed-info span {
+    font-size: 14px;
+    opacity: .9;
+}
+
+.bed-info h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin: 3px 0;
+}
+
+.bed-info small {
+    font-size: 12px;
+    opacity: .9;
+}
+
+
+/* =========================
+   MAIN PANEL
+   ========================= */
+
+.dashboard-panel {
+    background: white;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,.07);
+}
+
+.panel-header {
+    padding: 25px 30px;
+    background: #f8fbff;
+    border-bottom: 1px solid #e7eef5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+    .panel-header h4 {
+        color: #0D3B66;
+        font-weight: 700;
+        margin: 0;
+    }
+
+        .panel-header h4 i {
+            color: #1565C0;
+            margin-right: 8px;
+        }
+
+    .panel-header p {
+        color: #718096;
+        margin: 5px 0 0;
+        font-size: 14px;
+    }
+
+
+/* LIVE BADGE */
+
+.live-badge {
+    background: #e8f8ef;
+    color: #198754;
+    padding: 7px 13px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+    .live-badge i {
+        font-size: 7px;
+        margin-right: 5px;
+    }
+
+
+/* PANEL BODY */
+
+.panel-body {
+    padding: 30px;
+}
+
+
+/* =========================
+   FORM
+   ========================= */
+
+.form-section {
+    margin-bottom: 22px;
+}
+
+    .form-section label {
+        display: block;
+        color: #334e68;
+        font-weight: 600;
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+        .form-section label i {
+            color: #1565C0;
+            margin-right: 5px;
+        }
+
+    .form-section .form-control {
+        height: 48px;
+        border: 1px solid #dce6ef;
+        border-radius: 10px;
+        background: #f9fbfd;
+    }
+
+        .form-section .form-control:focus {
+            border-color: #1565C0;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(21,101,192,.1);
+        }
+
+
+/* UPDATE BUTTON */
+
+.update-button {
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+    padding: 13px;
+    background: linear-gradient(135deg, #1565C0, #0D47A1);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    transition: .3s;
+}
+
+    .update-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(21,101,192,.25);
+    }
+
+
+/* =========================
+   LIVE PANEL
+   ========================= */
+
+.live-panel {
+    background: white;
+    border-radius: 22px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,.07);
+    margin-bottom: 20px;
+}
+
+.live-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 18px;
+    background: #e8f3ff;
+    color: #1565C0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+}
+
+.live-panel h4 {
+    color: #0D3B66;
+    font-weight: 700;
+}
+
+.live-panel p {
+    color: #718096;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.signal-status {
+    display: inline-flex;
+    align-items: center;
+    background: #e8f8ef;
+    color: #198754;
+    padding: 8px 14px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+    .signal-status span {
+        width: 8px;
+        height: 8px;
+        background: #198754;
+        border-radius: 50%;
+        margin-right: 7px;
+        animation: signalPulse 1.5s infinite;
+    }
+
+@keyframes signalPulse {
+
+    0% {
+        box-shadow: 0 0 0 0 rgba(25,135,84,.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 8px rgba(25,135,84,0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(25,135,84,0);
+    }
+}
+
+
+/* =========================
+   LAST UPDATED
+   ========================= */
+
+.updated-panel {
+    background: #0D3B66;
+    color: white;
+    border-radius: 20px;
+    padding: 22px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    box-shadow: 0 8px 20px rgba(13,59,102,.15);
+}
+
+    .updated-panel > i {
+        font-size: 30px;
+        opacity: .8;
+    }
+
+    .updated-panel div {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .updated-panel small {
+        opacity: .7;
+        font-size: 12px;
+    }
+
+    .updated-panel strong {
+        font-size: 15px;
+        margin-top: 3px;
+    }
+
+    .updated-panel span {
+        font-size: 12px;
+        opacity: .7;
+    }
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 768px) {
+
+    .hospital-dashboard {
+        padding: 20px 15px 40px;
+    }
+
+    .dashboard-header {
+        padding: 28px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hospital-icon {
+        display: none;
+    }
+
+    .dashboard-header h1 {
+        font-size: 28px;
+    }
+
+    .panel-body {
+        padding: 20px;
+    }
+
+    .panel-header {
+        padding: 20px;
+    }
+
+    .bed-stat-card {
+        min-height: 130px;
+    }
+}
+/* =========================================
+   USER DASHBOARD
+   ========================================= */
+
+.user-dashboard {
+    background: #f4f8fc;
+    min-height: calc(100vh - 70px);
+    padding: 30px 20px 60px;
+}
+
+
+/* =========================================
+   HERO
+   ========================================= */
+
+.user-hero {
+    background: linear-gradient(135deg, #0D3B66, #1565C0);
+    border-radius: 24px;
+    padding: 38px 45px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    box-shadow: 0 12px 30px rgba(13, 59, 102, .18);
+}
+
+.user-badge {
+    display: inline-block;
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.15);
+    padding: 7px 15px;
+    border-radius: 30px;
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+.user-hero h1 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.user-hero p {
+    margin: 0;
+    max-width: 650px;
+    opacity: .9;
+    line-height: 1.6;
+}
+
+.hero-icon {
+    width: 90px;
+    height: 90px;
+    background: rgba(255,255,255,.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+}
+
+
+/* =========================================
+   STAT CARDS
+   ========================================= */
+
+.user-stat-card {
+    background: white;
+    border-radius: 18px;
+    padding: 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 7px 22px rgba(0,0,0,.06);
+    transition: .3s;
+}
+
+    .user-stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 14px 30px rgba(0,0,0,.10);
+    }
+
+.stat-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+    .stat-icon.blue {
+        background: #e8f3ff;
+        color: #1565C0;
+    }
+
+    .stat-icon.green {
+        background: #e8f8ef;
+        color: #198754;
+    }
+
+    .stat-icon.red {
+        background: #ffeded;
+        color: #dc3545;
+    }
+
+    .stat-icon.purple {
+        background: #f0eafd;
+        color: #6f42c1;
+    }
+
+.user-stat-card span {
+    color: #718096;
+    font-size: 13px;
+}
+
+.user-stat-card h2 {
+    color: #0D3B66;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 2px 0 0;
+}
+
+
+/* =========================================
+   SEARCH PANEL
+   ========================================= */
+
+.search-panel {
+    background: white;
+    border-radius: 22px;
+    padding: 25px 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 7px 22px rgba(0,0,0,.06);
+}
+
+.search-heading {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.search-heading-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: #e8f3ff;
+    color: #1565C0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.search-heading h4 {
+    margin: 0;
+    color: #0D3B66;
+    font-weight: 700;
+}
+
+.search-heading p {
+    margin: 3px 0 0;
+    color: #718096;
+    font-size: 13px;
+}
+
+.search-input {
+    height: 50px;
+    border: 1px solid #dce6ef;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    background: #f9fbfd;
+}
+
+    .search-input i {
+        color: #1565C0;
+        margin-right: 10px;
+    }
+
+    .search-input input {
+        border: none;
+        outline: none;
+        width: 100%;
+        background: transparent;
+        font-size: 14px;
+    }
+
+.search-buttons {
+    display: flex;
+    gap: 10px;
+    height: 50px;
+}
+
+.search-button {
+    flex: 1;
+    border: none;
+    border-radius: 12px;
+    background: #1565C0;
+    color: white;
+    font-weight: 600;
+    transition: .3s;
+}
+
+    .search-button:hover {
+        background: #0D47A1;
+        transform: translateY(-2px);
+    }
+
+.reset-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+    border-radius: 12px;
+    background: #eef2f6;
+    color: #52616b;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+    .reset-button:hover {
+        background: #e0e6ec;
+        color: #0D3B66;
+    }
+
+
+/* =========================================
+   HOSPITAL LIST HEADER
+   ========================================= */
+
+.hospital-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+    .hospital-list-header h3 {
+        color: #0D3B66;
+        font-weight: 700;
+        margin: 0;
+    }
+
+        .hospital-list-header h3 i {
+            color: #1565C0;
+            margin-right: 7px;
+        }
+
+    .hospital-list-header p {
+        color: #718096;
+        margin: 4px 0 0;
+        font-size: 13px;
+    }
+
+.live-indicator {
+    background: #e8f8ef;
+    color: #198754;
+    padding: 8px 14px;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+    .live-indicator span {
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #198754;
+        margin-right: 6px;
+        animation: livePulse 1.5s infinite;
+    }
+
+@keyframes livePulse {
+
+    0% {
+        box-shadow: 0 0 0 0 rgba(25,135,84,.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 7px rgba(25,135,84,0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(25,135,84,0);
+    }
+}
+
+
+/* =========================================
+   HOSPITAL CARD
+   ========================================= */
+
+.hospital-card {
+    background: white;
+    border-radius: 20px;
+    padding: 22px;
+    box-shadow: 0 7px 22px rgba(0,0,0,.06);
+    transition: .3s;
+    height: 100%;
+}
+
+    .hospital-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 32px rgba(0,0,0,.10);
+    }
+
+
+/* HEADER */
+
+.hospital-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #edf1f5;
+}
+
+.hospital-title {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.hospital-logo {
+    width: 52px;
+    height: 52px;
+    border-radius: 15px;
+    background: #e8f3ff;
+    color: #1565C0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.hospital-title h4 {
+    color: #0D3B66;
+    font-size: 17px;
+    font-weight: 700;
+    margin: 0 0 5px;
+}
+
+.hospital-title p {
+    color: #718096;
+    font-size: 12px;
+    margin: 0;
+}
+
+    .hospital-title p i {
+        color: #1565C0;
+    }
+
+
+/* STATUS */
+
+.availability {
+    padding: 6px 10px;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+    .availability.available {
+        background: #e8f8ef;
+        color: #198754;
+    }
+
+    .availability.full {
+        background: #ffeded;
+        color: #dc3545;
+    }
+
+
+/* =========================================
+   BED GRID
+   ========================================= */
+
+.bed-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 20px 0;
+}
+
+.bed-item {
+    background: #f8fafc;
+    border-radius: 14px;
+    padding: 13px 10px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.bed-item-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+}
+
+    .bed-item-icon.icu {
+        background: #ffeded;
+        color: #dc3545;
+    }
+
+    .bed-item-icon.emergency {
+        background: #e8f3ff;
+        color: #1565C0;
+    }
+
+    .bed-item-icon.general {
+        background: #e8f8ef;
+        color: #198754;
+    }
+
+.bed-item span {
+    display: block;
+    color: #718096;
+    font-size: 10px;
+}
+
+.bed-item strong {
+    color: #0D3B66;
+    font-size: 18px;
+}
+
+
+/* =========================================
+   CARD FOOTER
+   ========================================= */
+
+.hospital-card-footer {
+    border-top: 1px solid #edf1f5;
+    padding-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #718096;
+    font-size: 11px;
+}
+
+    .hospital-card-footer strong {
+        color: #0D3B66;
+    }
+
+.ready-text {
+    color: #198754;
+}
+
+.full-text {
+    color: #dc3545;
+}
+
+
+/* =========================================
+   NO RESULTS
+   ========================================= */
+
+.no-hospitals {
+    background: white;
+    border-radius: 20px;
+    padding: 60px 20px;
+    text-align: center;
+    box-shadow: 0 7px 22px rgba(0,0,0,.06);
+}
+
+    .no-hospitals > i {
+        font-size: 45px;
+        color: #9aaabd;
+    }
+
+    .no-hospitals h4 {
+        margin-top: 15px;
+        color: #0D3B66;
+    }
+
+    .no-hospitals p {
+        color: #718096;
+    }
+
+
+/* =========================================
+   REAL-TIME BAR
+   ========================================= */
+
+.realtime-bar {
+    margin-top: 30px;
+    background: #0D3B66;
+    color: white;
+    border-radius: 18px;
+    padding: 20px 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.realtime-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    background: rgba(255,255,255,.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.realtime-bar strong {
+    display: block;
+    font-size: 15px;
+}
+
+.realtime-bar p {
+    margin: 3px 0 0;
+    opacity: .7;
+    font-size: 12px;
+}
+
+.signal-status {
+    margin-left: auto;
+    background: rgba(25,135,84,.2);
+    color: #6ee7a0;
+    border-radius: 30px;
+    padding: 8px 13px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+    .signal-status span {
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        background: #42d77d;
+        border-radius: 50%;
+        margin-right: 5px;
+    }
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    .user-dashboard {
+        padding: 20px 15px 40px;
+    }
+
+    .user-hero {
+        padding: 28px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hero-icon {
+        display: none;
+    }
+
+    .user-hero h1 {
+        font-size: 28px;
+    }
+
+    .search-buttons {
+        margin-top: 10px;
+    }
+
+    .hospital-list-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .bed-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hospital-card-header {
+        flex-direction: column;
+    }
+
+    .realtime-bar {
+        flex-wrap: wrap;
+    }
+
+    .signal-status {
+        margin-left: 0;
+    }
+}
+/* =====================================================
+   SMARTBED MODERN HOME PAGE
+   ===================================================== */
+
+
+/* HERO */
+
+.smartbed-hero {
+    position: relative;
+    min-height: 100vh;
+    background: url('/images/healthcare.jpg') center center / cover no-repeat;
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient( 90deg, rgba(5, 28, 52, .94), rgba(8, 55, 95, .78), rgba(8, 55, 95, .35) );
+}
+
+.smartbed-hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* HERO BADGE */
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 16px;
+    border-radius: 30px;
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.2);
+    color: #dcefff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #48d597;
+    box-shadow: 0 0 0 5px rgba(72,213,151,.12);
+}
+
+
+/* HERO TITLE */
+
+.hero-title {
+    color: white;
+    font-size: 70px;
+    line-height: 1;
+    font-weight: 800;
+    margin-bottom: 25px;
+}
+
+    .hero-title span {
+        display: block;
+        color: #b9dfff;
+        font-size: 31px;
+        font-weight: 400;
+        line-height: 1.3;
+        margin-top: 15px;
+    }
+
+.hero-description {
+    color: rgba(255,255,255,.82);
+    max-width: 650px;
+    font-size: 17px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+
+/* BUTTONS */
+
+.hero-buttons {
+    display: flex;
+    gap: 13px;
+    flex-wrap: wrap;
+}
+
+.hero-login {
+    background: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 13px 28px;
+    font-weight: 600;
+}
+
+    .hero-login:hover {
+        background: #1565c0;
+        color: white;
+        transform: translateY(-2px);
+    }
+
+.hero-learn {
+    color: white;
+    border: 1px solid rgba(255,255,255,.5);
+    border-radius: 12px;
+    padding: 13px 25px;
+}
+
+    .hero-learn:hover {
+        background: white;
+        color: #0D3B66;
+    }
+
+
+/* HERO INFO */
+
+.hero-info {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    color: rgba(255,255,255,.72);
+    font-size: 12px;
+}
+
+    .hero-info i {
+        color: #64d8a1;
+        margin-right: 5px;
+    }
+
+
+/* HERO DASHBOARD CARD */
+
+.hero-dashboard-card {
+    background: rgba(255,255,255,.96);
+    border-radius: 25px;
+    padding: 25px;
+    box-shadow: 0 25px 60px rgba(0,0,0,.25);
+    transform: rotate(1deg);
+    animation: floatingCard 4s ease-in-out infinite;
+}
+
+@keyframes floatingCard {
+
+    0%, 100% {
+        transform: translateY(0) rotate(1deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(1deg);
+    }
+}
+
+.dashboard-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+    .dashboard-card-header small {
+        color: #718096;
+        font-size: 10px;
+        letter-spacing: 1.5px;
+    }
+
+    .dashboard-card-header h5 {
+        color: #0D3B66;
+        margin: 3px 0 0;
+        font-weight: 700;
+    }
+
+.online-status {
+    color: #198754;
+    background: #e8f8ef;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+    .online-status span {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        background: #198754;
+        border-radius: 50%;
+        margin-right: 4px;
+    }
+
+
+/* MINI HOSPITAL */
+
+.mini-hospital {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px;
+    border-radius: 15px;
+    background: #f4f8fc;
+}
+
+.mini-hospital-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 13px;
+    background: #e4f0fc;
+    color: #1565C0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.mini-hospital strong {
+    display: block;
+    color: #0D3B66;
+    font-size: 14px;
+}
+
+.mini-hospital small {
+    color: #718096;
+    font-size: 10px;
+}
+
+    .mini-hospital small i {
+        color: #1565C0;
+    }
+
+.available-badge {
+    margin-left: auto;
+    color: #198754;
+    background: #e8f8ef;
+    padding: 5px 8px;
+    border-radius: 20px;
+    font-size: 9px;
+}
+
+
+/* MINI BEDS */
+
+.mini-bed-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.mini-bed-card {
+    background: #fafcfe;
+    border: 1px solid #edf1f5;
+    border-radius: 14px;
+    padding: 13px;
+    text-align: center;
+}
+
+    .mini-bed-card i {
+        display: block;
+        font-size: 18px;
+        color: #1565C0;
+        margin-bottom: 5px;
+    }
+
+    .mini-bed-card small {
+        display: block;
+        color: #718096;
+        font-size: 9px;
+    }
+
+    .mini-bed-card strong {
+        display: block;
+        color: #0D3B66;
+        font-size: 23px;
+        margin: 2px 0;
+    }
+
+    .mini-bed-card span {
+        color: #198754;
+        font-size: 8px;
+    }
+
+
+/* LIVE UPDATE */
+
+.live-update-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #eef8f4;
+    border-radius: 13px;
+    padding: 12px;
+}
+
+    .live-update-box > i:first-child {
+        color: #198754;
+        font-size: 18px;
+    }
+
+    .live-update-box strong {
+        display: block;
+        color: #0D3B66;
+        font-size: 11px;
+    }
+
+    .live-update-box small {
+        color: #718096;
+        font-size: 8px;
+    }
+
+    .live-update-box > i:last-child {
+        margin-left: auto;
+        color: #198754;
+    }
+
+
+/* =====================================================
+   STATS
+   ===================================================== */
+
+.stats-section {
+    background: white;
+    padding: 30px 0;
+    position: relative;
+    z-index: 3;
+    box-shadow: 0 5px 20px rgba(0,0,0,.05);
+}
+
+.stat-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    border-right: 1px solid #edf1f5;
+}
+
+.col-md-3:last-child .stat-box {
+    border-right: none;
+}
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+    .stat-icon.blue {
+        background: #e8f3ff;
+        color: #1565C0;
+    }
+
+    .stat-icon.red {
+        background: #ffeded;
+        color: #dc3545;
+    }
+
+    .stat-icon.green {
+        background: #e8f8ef;
+        color: #198754;
+    }
+
+    .stat-icon.purple {
+        background: #f0eafd;
+        color: #6f42c1;
+    }
+
+.stat-box h3 {
+    margin: 0;
+    color: #0D3B66;
+    font-weight: 700;
+    font-size: 22px;
+}
+
+.stat-box p {
+    margin: 2px 0 0;
+    color: #718096;
+    font-size: 11px;
+}
+
+
+/* =====================================================
+   SECTIONS
+   ===================================================== */
+
+.features-section,
+.how-section {
+    padding: 90px 0;
+}
+
+.features-section {
+    background: #f5f9fd;
+}
+
+.how-section {
+    background: white;
+}
+
+.section-heading {
+    text-align: center;
+    max-width: 650px;
+    margin: 0 auto 50px;
+}
+
+    .section-heading span {
+        color: #1565C0;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2px;
+    }
+
+    .section-heading h2 {
+        color: #0D3B66;
+        font-size: 40px;
+        font-weight: 300;
+        margin: 12px 0 15px;
+    }
+
+        .section-heading h2 strong {
+            font-weight: 800;
+        }
+
+    .section-heading p {
+        color: #718096;
+        line-height: 1.7;
+    }
+
+
+/* =====================================================
+   FEATURE CARDS
+   ===================================================== */
+
+.feature-card {
+    background: white;
+    border-radius: 22px;
+    padding: 32px;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,.06);
+    transition: .3s;
+}
+
+    .feature-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 18px 40px rgba(0,0,0,.10);
+    }
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    margin-bottom: 25px;
+}
+
+    .feature-icon.red {
+        background: #ffeded;
+        color: #dc3545;
+    }
+
+    .feature-icon.blue {
+        background: #e8f3ff;
+        color: #1565C0;
+    }
+
+    .feature-icon.green {
+        background: #e8f8ef;
+        color: #198754;
+    }
+
+.feature-number {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    color: #e5eaf0;
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.feature-card h4 {
+    color: #0D3B66;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.feature-card p {
+    color: #718096;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.feature-link {
+    color: #1565C0;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+    .feature-link i {
+        margin-left: 5px;
+        transition: .3s;
+    }
+
+.feature-card:hover .feature-link i {
+    margin-left: 10px;
+}
+
+
+/* =====================================================
+   HOW IT WORKS
+   ===================================================== */
+
+.step-card {
+    text-align: center;
+    padding: 35px 25px;
+    border-radius: 20px;
+    background: #f7fafd;
+    height: 100%;
+    position: relative;
+    transition: .3s;
+}
+
+    .step-card:hover {
+        background: #eef6fd;
+        transform: translateY(-5px);
+    }
+
+.step-number {
+    color: #dbe8f4;
+    font-size: 40px;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.step-card > i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px;
+    border-radius: 18px;
+    background: white;
+    color: #1565C0;
+    font-size: 24px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.06);
+}
+
+.step-card h4 {
+    color: #0D3B66;
+    font-weight: 700;
+}
+
+.step-card p {
+    color: #718096;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   CTA
+   ===================================================== */
+
+.cta-section {
+    padding: 30px 0 80px;
+    background: white;
+}
+
+.cta-box {
+    background: linear-gradient( 135deg, #0D3B66, #1565C0 );
+    border-radius: 25px;
+    padding: 50px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+    .cta-box span {
+        color: #9dd5ff;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 2px;
+    }
+
+    .cta-box h2 {
+        font-size: 34px;
+        font-weight: 700;
+        margin: 10px 0;
+    }
+
+    .cta-box p {
+        margin: 0;
+        color: rgba(255,255,255,.75);
+    }
+
+.cta-button {
+    background: white;
+    color: #0D3B66;
+    border-radius: 12px;
+    padding: 13px 25px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+    .cta-button:hover {
+        background: #eaf4fc;
+        color: #0D3B66;
+    }
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 991px) {
+
+    .hero-title {
+        font-size: 55px;
+    }
+
+        .hero-title span {
+            font-size: 26px;
+        }
+
+    .stat-box {
+        border-right: none;
+        justify-content: flex-start;
+        padding-left: 20px;
+    }
+
+    .cta-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+
+@media (max-width: 576px) {
+
+    .hero-title {
+        font-size: 42px;
+    }
+
+        .hero-title span {
+            font-size: 22px;
+        }
+
+    .hero-description {
+        font-size: 14px;
+    }
+
+    .hero-info {
+        gap: 12px;
+        flex-direction: column;
+    }
+
+    .section-heading h2 {
+        font-size: 31px;
+    }
+
+    .mini-bed-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-box {
+        padding: 30px;
+    }
+
+        .cta-box h2 {
+            font-size: 27px;
+        }
+}
+/* ================================
+   BOOKING PAGE
+   ================================ */
+
+.booking-page {
+    min-height: 90vh;
+    background: #f4f8fc;
+}
+
+.booking-card {
+    background: white;
+    border-radius: 24px;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(13, 59, 102, 0.12);
+}
+
+
+/* Header */
+
+.booking-header {
+    background: linear-gradient(135deg, #0D3B66, #1565C0);
+    color: white;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+    .booking-header h2 {
+        margin: 0;
+        font-weight: 700;
+    }
+
+    .booking-header p {
+        margin: 5px 0 0;
+        opacity: 0.85;
+    }
+
+.booking-icon {
+    width: 65px;
+    height: 65px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+}
+
+
+/* Hospital Information */
+
+.hospital-info {
+    margin: 30px;
+    padding: 20px;
+    background: #f4f8fc;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.hospital-info-icon {
+    width: 55px;
+    height: 55px;
+    background: #e3f0ff;
+    color: #1565C0;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+}
+
+.hospital-info h4 {
+    margin: 0;
+    font-weight: 700;
+    color: #0D3B66;
+}
+
+.hospital-info p {
+    margin: 5px 0 0;
+    color: #6c757d;
+}
+
+
+/* Form */
+
+.booking-card form {
+    padding: 0 30px 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #0D3B66;
+    }
+
+        .form-group label i {
+            margin-right: 6px;
+            color: #1565C0;
+        }
+
+    .form-group .form-control,
+    .form-group .form-select {
+        border-radius: 12px;
+        padding: 12px 15px;
+        border: 1px solid #dce5ee;
+    }
+
+        .form-group .form-control:focus,
+        .form-group .form-select:focus {
+            border-color: #1565C0;
+            box-shadow: 0 0 0 0.2rem rgba(21,101,192,0.12);
+        }
+
+
+/* Buttons */
+
+.booking-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.confirm-booking {
+    flex: 1;
+    border: none;
+    background: #1565C0;
+    color: white;
+    padding: 14px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+    .confirm-booking:hover {
+        background: #0D47A1;
+        transform: translateY(-2px);
+    }
+
+.cancel-booking {
+    padding: 14px 25px;
+    border-radius: 12px;
+    background: #eef2f6;
+    color: #495057;
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+    .cancel-booking:hover {
+        background: #dfe5eb;
+        color: #212529;
+    }
+
+
+/* Mobile */
+
+@media (max-width: 576px) {
+
+    .booking-header {
+        padding: 25px 20px;
+    }
+
+        .booking-header h2 {
+            font-size: 22px;
+        }
+
+    .hospital-info {
+        margin: 20px;
+    }
+
+    .booking-card form {
+        padding: 0 20px 25px;
+    }
+
+    .booking-buttons {
+        flex-direction: column;
+    }
+
+    .cancel-booking {
+        justify-content: center;
+    }
+}
+/* =================================
+   BOOKING CONFIRMATION
+   ================================= */
+
+.confirmation-page {
+    min-height: 90vh;
+    background: #f4f8fc;
+}
+
+.confirmation-card {
+    background: white;
+    border-radius: 25px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 15px 45px rgba(13, 59, 102, 0.12);
+}
+
+
+/* Success Icon */
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: #dff7e8;
+    color: #198754;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+}
+
+.confirmation-card h1 {
+    color: #0D3B66;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.confirmation-message {
+    color: #6c757d;
+    margin-bottom: 25px;
+}
+
+
+/* Booking ID */
+
+.booking-id {
+    background: #eef6ff;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .booking-id span {
+        color: #6c757d;
+    }
+
+    .booking-id strong {
+        color: #1565C0;
+        font-size: 20px;
+    }
+
+
+/* Information Sections */
+
+.confirmation-section {
+    text-align: left;
+    border-top: 1px solid #e9ecef;
+    padding: 22px 0;
+}
+
+    .confirmation-section h5 {
+        color: #0D3B66;
+        font-weight: 700;
+        margin-bottom: 18px;
+    }
+
+        .confirmation-section h5 i {
+            color: #1565C0;
+            margin-right: 8px;
+        }
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 9px 0;
+    color: #6c757d;
+}
+
+    .detail-row strong {
+        color: #212529;
+    }
+
+
+/* Bed */
+
+.bed-confirmed {
+    background: linear-gradient(135deg, #0D3B66, #1565C0);
+    color: white;
+    border-radius: 18px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-align: left;
+    margin-top: 10px;
+}
+
+.bed-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+}
+
+.bed-confirmed small {
+    opacity: .75;
+}
+
+.bed-confirmed h4 {
+    margin: 2px 0 0;
+    font-weight: 700;
+}
+
+.confirmed-badge {
+    margin-left: auto;
+    background: #198754;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+
+/* Date */
+
+.booking-date {
+    color: #6c757d;
+    padding: 20px 0;
+    font-size: 14px;
+}
+
+    .booking-date i {
+        color: #1565C0;
+        margin-right: 5px;
+    }
+
+
+/* Buttons */
+
+.confirmation-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.btn-dashboard,
+.btn-print {
+    flex: 1;
+    padding: 13px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+}
+
+.btn-dashboard {
+    background: #1565C0;
+    color: white;
+}
+
+    .btn-dashboard:hover {
+        background: #0D47A1;
+        color: white;
+    }
+
+.btn-print {
+    background: #eef2f6;
+    color: #495057;
+}
+
+    .btn-print:hover {
+        background: #dfe5eb;
+    }
+
+
+/* Mobile */
+
+@media (max-width: 576px) {
+
+    .confirmation-card {
+        padding: 25px 20px;
+    }
+
+    .detail-row {
+        flex-direction: column;
+        gap: 3px;
+    }
+
+    .bed-confirmed {
+        flex-wrap: wrap;
+    }
+
+    .confirmed-badge {
+        margin-left: 0;
+    }
+
+    .confirmation-buttons {
+        flex-direction: column;
+    }
+}
+
+
+/* Print */
+
+@media print {
+
+    body {
+        background: white;
+    }
+
+    .confirmation-page {
+        background: white;
+    }
+
+    .confirmation-card {
+        box-shadow: none;
+    }
+
+    .confirmation-buttons {
+        display: none;
+    }
+}
+/* Hospital Booking Table */
+
+.table thead th {
+    background-color: #0D3B66;
+    color: white;
+    padding: 14px;
+    white-space: nowrap;
+}
+
+.table tbody td {
+    padding: 14px;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f7ff;
+}
+
+.badge {
+    padding: 8px 12px;
+    border-radius: 20px;
+}
+/* =========================================================
+   SMARTBED HOSPITAL DASHBOARD
+   ========================================================= */
+
+.hospital-dashboard {
+    background: #f4f8fc;
+    min-height: 100vh;
+    padding: 35px 5%;
+}
+
+
+/* =========================================================
+   WELCOME HEADER
+   ========================================================= */
+
+.dashboard-header {
+    background: linear-gradient(135deg, #0d3b66, #1565c0);
+    border-radius: 25px;
+    padding: 35px 40px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    box-shadow: 0 12px 35px rgba(13, 59, 102, 0.18);
+}
+
+.dashboard-badge {
+    display: inline-block;
+    background: rgba(255,255,255,.15);
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.dashboard-header h1 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.dashboard-header p {
+    max-width: 650px;
+    margin-bottom: 12px;
+    opacity: .9;
+    font-size: 16px;
+}
+
+.hospital-location {
+    font-size: 14px;
+    opacity: .9;
+}
+
+.dashboard-hospital-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+}
+
+
+/* =========================================================
+   BED STATISTICS
+   ========================================================= */
+
+.bed-stat-card {
+    border-radius: 20px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: white;
+    box-shadow: 0 8px 25px rgba(0,0,0,.07);
+    transition: .3s ease;
+    border-left: 5px solid;
+}
+
+    .bed-stat-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 35px rgba(0,0,0,.12);
+    }
+
+.icu-card {
+    border-left-color: #dc3545;
+}
+
+.emergency-card {
+    border-left-color: #1565c0;
+}
+
+.general-card {
+    border-left-color: #198754;
+}
+
+.bed-stat-icon {
+    width: 65px;
+    height: 65px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+}
+
+.icu-card .bed-stat-icon {
+    background: #ffe8eb;
+    color: #dc3545;
+}
+
+.emergency-card .bed-stat-icon {
+    background: #e5f0ff;
+    color: #1565c0;
+}
+
+.general-card .bed-stat-icon {
+    background: #e4f7ec;
+    color: #198754;
+}
+
+.bed-stat-content span {
+    color: #6c757d;
+    font-size: 15px;
+}
+
+.bed-stat-content h2 {
+    font-size: 35px;
+    font-weight: 700;
+    margin: 2px 0;
+    color: #1d3557;
+}
+
+.available-status {
+    color: #198754;
+}
+
+.unavailable-status {
+    color: #dc3545;
+}
+
+
+/* =========================================================
+   DASHBOARD CARD
+   ========================================================= */
+
+.dashboard-card {
+    background: white;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0,0,0,.07);
+}
+
+.dashboard-card-header {
+    background: linear-gradient(135deg, #1565c0, #0d47a1);
+    color: white;
+    padding: 20px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 19px;
+    font-weight: 600;
+}
+
+    .dashboard-card-header i {
+        margin-right: 8px;
+    }
+
+.update-badge {
+    background: rgba(255,255,255,.15);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.dashboard-card-body {
+    padding: 30px;
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.dashboard-form-group {
+    margin-bottom: 22px;
+}
+
+    .dashboard-form-group label {
+        display: block;
+        font-weight: 600;
+        color: #253858;
+        margin-bottom: 8px;
+    }
+
+        .dashboard-form-group label i {
+            margin-right: 6px;
+        }
+
+.input-icon-wrapper {
+    position: relative;
+}
+
+    .input-icon-wrapper > i {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #7b8a9a;
+        z-index: 2;
+    }
+
+    .input-icon-wrapper .form-control {
+        padding-left: 45px;
+        height: 48px;
+        border: 1px solid #d9e2ec;
+        border-radius: 12px;
+    }
+
+        .input-icon-wrapper .form-control:focus {
+            border-color: #1565c0;
+            box-shadow: 0 0 0 3px rgba(21,101,192,.1);
+        }
+
+.update-bed-button {
+    width: 100%;
+    border: none;
+    background: linear-gradient(135deg, #198754, #20a464);
+    color: white;
+    padding: 13px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: .3s;
+}
+
+    .update-bed-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(25,135,84,.25);
+    }
+
+
+/* =========================================================
+   LIVE PANEL
+   ========================================================= */
+
+.live-panel {
+    background: linear-gradient(135deg, #e8f7ef, #f5fffa);
+    border: 1px solid #c8ead7;
+    border-radius: 20px;
+    padding: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.live-panel-icon {
+    width: 65px;
+    height: 65px;
+    background: #198754;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-size: 28px;
+}
+
+.live-panel h4 {
+    color: #176b43;
+    font-weight: 700;
+}
+
+.live-panel p {
+    color: #607080;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.signal-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    padding: 8px 14px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #198754;
+}
+
+.signal-dot {
+    width: 9px;
+    height: 9px;
+    background: #20c997;
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulseSignal 1.5s infinite;
+}
+
+@keyframes pulseSignal {
+
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: .35;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   LAST UPDATED
+   ========================================================= */
+
+.updated-panel {
+    background: white;
+    border-radius: 18px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 7px 25px rgba(0,0,0,.06);
+    margin-bottom: 20px;
+}
+
+.updated-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    background: #e8f1ff;
+    color: #1565c0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.updated-panel small {
+    display: block;
+    color: #8995a3;
+}
+
+.updated-panel strong {
+    display: block;
+    color: #26384d;
+}
+
+.updated-panel span {
+    font-size: 13px;
+    color: #6c757d;
+}
+
+
+/* =========================================================
+   QUICK INFO
+   ========================================================= */
+
+.quick-info-panel {
+    background: white;
+    border-radius: 18px;
+    padding: 20px;
+    display: flex;
+    gap: 15px;
+    box-shadow: 0 7px 25px rgba(0,0,0,.06);
+}
+
+.quick-info-icon {
+    color: #1565c0;
+    font-size: 25px;
+}
+
+.quick-info-panel h5 {
+    margin-bottom: 5px;
+    color: #253858;
+}
+
+.quick-info-panel p {
+    color: #6c757d;
+    font-size: 13px;
+    margin: 0;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   PATIENT BOOKINGS
+   ========================================================= */
+
+.booking-dashboard-card {
+    background: white;
+    margin-top: 35px;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0,0,0,.07);
+}
+
+.booking-header {
+    background: linear-gradient(135deg, #0d3b66, #1565c0);
+    color: white;
+    padding: 22px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+    .booking-header h3 {
+        margin: 0;
+        font-size: 21px;
+    }
+
+        .booking-header h3 i {
+            margin-right: 8px;
+        }
+
+    .booking-header p {
+        margin: 5px 0 0;
+        opacity: .85;
+        font-size: 13px;
+    }
+
+.booking-count {
+    background: rgba(255,255,255,.15);
+    padding: 8px 14px;
+    border-radius: 25px;
+    font-size: 13px;
+}
+
+.booking-table-container {
+    padding: 0;
+}
+
+.booking-table {
+    margin: 0;
+}
+
+    .booking-table thead {
+        background: #f3f7fb;
+    }
+
+    .booking-table th {
+        color: #52677d;
+        font-size: 13px;
+        padding: 16px;
+        border: none;
+    }
+
+    .booking-table td {
+        padding: 16px;
+        border-color: #edf1f5;
+        color: #435466;
+    }
+
+    .booking-table tbody tr {
+        transition: .2s;
+    }
+
+        .booking-table tbody tr:hover {
+            background: #f8fbff;
+        }
+
+.booking-id {
+    font-weight: 700;
+    color: #1565c0;
+}
+
+.patient-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: #26384d;
+}
+
+.patient-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: #e7f0ff;
+    color: #1565c0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.booking-date strong {
+    display: block;
+    font-size: 13px;
+}
+
+.booking-date small {
+    color: #8995a3;
+}
+
+
+/* =========================================================
+   BED BADGES
+   ========================================================= */
+
+.bed-badge {
+    padding: 7px 11px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.icu-badge {
+    background: #ffe7eb;
+    color: #c82333;
+}
+
+.emergency-badge {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.general-badge {
+    background: #e2efff;
+    color: #1565c0;
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.status-confirmed {
+    background: #e5f7ec;
+    color: #198754;
+    padding: 7px 11px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-other {
+    background: #e9ecef;
+    color: #495057;
+    padding: 7px 11px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   NO BOOKINGS
+   ========================================================= */
+
+.no-bookings {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.no-bookings-icon {
+    width: 80px;
+    height: 80px;
+    background: #f0f3f6;
+    color: #8b98a7;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    font-size: 35px;
+}
+
+.no-bookings h4 {
+    margin-top: 18px;
+    color: #34495e;
+}
+
+.no-bookings p {
+    color: #8a96a3;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .hospital-dashboard {
+        padding: 20px 15px;
+    }
+
+    .dashboard-header {
+        padding: 25px;
+    }
+
+        .dashboard-header h1 {
+            font-size: 28px;
+        }
+
+    .dashboard-hospital-icon {
+        display: none;
+    }
+
+    .booking-header {
+        display: block;
+    }
+
+    .booking-count {
+        display: inline-block;
+        margin-top: 15px;
+    }
+}
+/* =========================================
+   SMARTBED ADMIN DASHBOARD
+   ========================================= */
+
+.admin-dashboard {
+    background: #f4f8fc;
+    min-height: calc(100vh - 70px);
+    padding: 40px;
+}
+
+
+/* ===== HEADER ===== */
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.dashboard-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #0d3b66;
+}
+
+    .dashboard-title i {
+        margin-right: 10px;
+    }
+
+.dashboard-subtitle {
+    margin-top: 7px;
+    color: #718096;
+    font-size: 15px;
+}
+
+
+/* ===== ADD HOSPITAL BUTTON ===== */
+
+.add-hospital-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #1565c0;
+    color: white;
+    padding: 13px 22px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(21,101,192,.25);
+    transition: .3s;
+}
+
+    .add-hospital-btn:hover {
+        background: #0d47a1;
+        color: white;
+        transform: translateY(-2px);
+    }
+
+
+/* ===== STAT CARDS ===== */
+
+.admin-stat-card {
+    border-radius: 20px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    min-height: 150px;
+    color: #fff7ed;
+    box-shadow: 0 10px 25px rgba(0,0,0,.08);
+    transition: .3s;
+}
+
+    .admin-stat-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 30px rgba(0,0,0,.12);
+    }
+
+
+.hospital-stat {
+    background: linear-gradient(135deg,#1565c0,#2196f3);
+}
+
+.user-stat {
+    background: linear-gradient(135deg,#198754,#20c997);
+}
+
+.icu-stat {
+    background: linear-gradient(135deg,#dc3545,#f06292);
+}
+.pending-stat {
+    background: #fff7ed;
+    color: #92400e;
+}
+
+.stat-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 18px;
+    background: rgba(255,255,255,.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 34px;
+    margin-right: 20px;
+}
+
+
+.stat-content h2 {
+    font-size: 35px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.stat-content p {
+    margin: 3px 0 5px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.stat-content small {
+    opacity: .85;
+}
+
+
+/* ===== HOSPITAL TABLE CARD ===== */
+
+.hospital-table-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,.07);
+    overflow: hidden;
+    margin-top: 25px;
+}
+
+
+/* ===== TABLE HEADER ===== */
+
+.table-header {
+    padding: 25px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #edf2f7;
+}
+
+    .table-header h4 {
+        margin: 0;
+        color: #0d3b66;
+        font-weight: 700;
+    }
+
+        .table-header h4 i {
+            margin-right: 8px;
+        }
+
+    .table-header p {
+        margin: 5px 0 0;
+        color: #718096;
+        font-size: 14px;
+    }
+
+
+.hospital-count {
+    background: #eef6ff;
+    color: #1565c0;
+    padding: 9px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* ===== TABLE ===== */
+
+.hospital-table {
+    margin: 0;
+    vertical-align: middle;
+}
+
+    .hospital-table thead {
+        background: #0d3b66;
+        color: white;
+    }
+
+        .hospital-table thead th {
+            padding: 17px 20px;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+            .hospital-table thead th i {
+                margin-right: 5px;
+            }
+
+
+    .hospital-table tbody td {
+        padding: 18px 20px;
+        border-color: #edf2f7;
+    }
+
+
+    .hospital-table tbody tr {
+        transition: .2s;
+    }
+
+        .hospital-table tbody tr:hover {
+            background: #f7fbff;
+        }
+
+
+/* ===== HOSPITAL NAME ===== */
+
+.hospital-name {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.hospital-mini-icon {
+    width: 42px;
+    height: 42px;
+    background: #e8f2ff;
+    color: #1565c0;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.hospital-name strong {
+    display: block;
+    color: #2d3748;
+}
+
+.hospital-name small {
+    display: block;
+    color: #a0aec0;
+    margin-top: 3px;
+}
+
+
+/* ===== LOCATION ===== */
+
+.location-text {
+    color: #4a5568;
+}
+
+    .location-text i {
+        color: #1565c0;
+        margin-right: 5px;
+    }
+
+
+/* ===== BED BADGES ===== */
+
+.bed-badge {
+    display: inline-flex;
+    min-width: 42px;
+    height: 32px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+
+.icu-badge {
+    background: #ffe5e8;
+    color: #dc3545;
+}
+
+.emergency-badge {
+    background: #e5f0ff;
+    color: #1565c0;
+}
+
+.general-badge {
+    background: #e4f7ed;
+    color: #198754;
+}
+
+.empty-badge {
+    background: #f1f3f5;
+    color: #6c757d;
+}
+
+
+/* ===== ACTION BUTTONS ===== */
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+
+.edit-btn,
+.delete-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 13px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: .2s;
+}
+
+
+.edit-btn {
+    background: #fff3cd;
+    color: #997404;
+}
+
+    .edit-btn:hover {
+        background: #ffc107;
+        color: #212529;
+    }
+
+
+.delete-btn {
+    background: #ffe5e5;
+    color: #dc3545;
+}
+
+    .delete-btn:hover {
+        background: #dc3545;
+        color: white;
+    }
+
+
+/* ===== INFORMATION BOX ===== */
+
+.dashboard-info {
+    margin-top: 25px;
+    background: #eaf4ff;
+    border: 1px solid #cfe5ff;
+    border-radius: 15px;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #0d3b66;
+}
+
+
+.info-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    background: #1565c0;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+
+.dashboard-info strong {
+    font-size: 15px;
+}
+
+.dashboard-info p {
+    margin: 3px 0 0;
+    font-size: 13px;
+    color: #5c7185;
+}
+
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+
+    .admin-dashboard {
+        padding: 20px;
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .dashboard-title {
+        font-size: 26px;
+    }
+
+    .table-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+}
+/* ===== VERIFICATION STATUS ===== */
+
+.verification-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.verified-status {
+    background: #d1fae5;
+    color: #047857;
+}
+
+.pending-status {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+.rejected-status {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+
+/* ===== VERIFY BUTTON ===== */
+
+.verify-btn {
+    border: none;
+    background: #198754;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+    .verify-btn:hover {
+        background: #157347;
+    }
+
+
+/* ===== REJECT BUTTON ===== */
+
+.reject-btn {
+    border: none;
+    background: #dc3545;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+    .reject-btn:hover {
+        background: #bb2d3b;
+    }
+/* ===== VERIFICATION STAT CARDS ===== */
+
+.pending-stat,
+.verified-stat {
+    color: #0D3B66 !important;
+}
+
+    /* Pending Verification */
+
+    .pending-stat .stat-icon {
+        background: #fef3c7 !important;
+        color: #b45309 !important;
+    }
+
+    .pending-stat .stat-content h2,
+    .pending-stat .stat-content p,
+    .pending-stat .stat-content small {
+        color: #0D3B66 !important;
+    }
+
+
+    /* Verified Hospitals */
+
+    .verified-stat .stat-icon {
+        background: #d1fae5 !important;
+        color: #047857 !important;
+    }
+
+    .verified-stat .stat-content h2,
+    .verified-stat .stat-content p,
+    .verified-stat .stat-content small {
+        color: #0D3B66 !important;
+    }
+/* ===== HOSPITAL RATING ===== */
+
+.hospital-rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 6px;
+    font-size: 14px;
+    color: #0D3B66;
+}
+
+    .hospital-rating i {
+        color: #f59e0b;
+    }
+
+    .hospital-rating strong {
+        font-size: 15px;
+    }
+
+    .hospital-rating span {
+        color: #64748b;
+    }
+
+    .hospital-rating small {
+        color: #64748b;
+        margin-left: 3px;
+    }
+
+.no-rating {
+    color: #64748b;
+}
+
+    .no-rating i {
+        color: #94a3b8;
+    }
