@@ -358,7 +358,32 @@
                                         @item.Location
 
                                     </p>
+                                    @if (ViewBag.Ratings != null &&
+                                   ViewBag.Ratings.ContainsKey(item.HospitalId))
+                                    {
+                                        var ratingInfo = ViewBag.Ratings[item.HospitalId];
 
+                                        <div class="hospital-rating">
+                                            <i class="bi bi-star-fill"></i>
+
+                                            <strong>
+                                                @ratingInfo.Average.ToString("0.0")
+                                            </strong>
+
+                                            <span>/ 5</span>
+
+                                            <small>
+                                                (@ratingInfo.Count ratings)
+                                            </small>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="hospital-rating no-rating">
+                                            <i class="bi bi-star"></i>
+                                            No ratings yet
+                                        </div>
+                                    }
                                 </div>
 
                             </div>
