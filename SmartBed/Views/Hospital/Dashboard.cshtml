@@ -2,17 +2,44 @@
 
 @{
     ViewData["Title"] = "Hospital Dashboard";
+    var bookings = ViewBag.Bookings as List<SmartBed.Models.Booking>;
+}
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show">
+        <i class="bi bi-check-circle-fill"></i>
+        @TempData["Success"]
+
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="alert">
+        </button>
+    </div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show">
+        <i class="bi bi-exclamation-triangle-fill"></i>
+        @TempData["Error"]
+
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="alert">
+        </button>
+    </div>
 }
 
 <div class="hospital-dashboard">
 
-    <!-- =========================
-         WELCOME HEADER
-         ========================= -->
+    <!-- ============================= -->
+    <!-- WELCOME HEADER -->
+    <!-- ============================= -->
 
     <div class="dashboard-header">
 
-        <div>
+        <div class="dashboard-welcome">
+
             <span class="dashboard-badge">
                 <i class="bi bi-hospital-fill"></i>
                 Hospital Dashboard
@@ -26,18 +53,24 @@
                 Manage your hospital bed availability and keep
                 emergency services updated in real time.
             </p>
+
+            <div class="hospital-location">
+                <i class="bi bi-geo-alt-fill"></i>
+                @Model.Location
+            </div>
+
         </div>
 
-        <div class="hospital-icon">
+        <div class="dashboard-hospital-icon">
             <i class="bi bi-hospital-fill"></i>
         </div>
 
     </div>
 
 
-    <!-- =========================
-         BED STATISTICS
-         ========================= -->
+    <!-- ============================= -->
+    <!-- BED STATISTICS -->
+    <!-- ============================= -->
 
     <div class="row g-4 mb-4">
 
@@ -47,11 +80,11 @@
 
             <div class="bed-stat-card icu-card">
 
-                <div class="bed-icon">
+                <div class="bed-stat-icon">
                     <i class="bi bi-heart-pulse-fill"></i>
                 </div>
 
-                <div class="bed-info">
+                <div class="bed-stat-content">
 
                     <span>ICU Beds</span>
 
@@ -59,14 +92,14 @@
 
                     @if (Model.ICUBeds > 0)
                     {
-                        <small>
+                        <small class="available-status">
                             <i class="bi bi-check-circle-fill"></i>
                             Beds Available
                         </small>
                     }
                     else
                     {
-                        <small>
+                        <small class="unavailable-status">
                             <i class="bi bi-x-circle-fill"></i>
                             No Beds Available
                         </small>
@@ -85,11 +118,11 @@
 
             <div class="bed-stat-card emergency-card">
 
-                <div class="bed-icon">
+                <div class="bed-stat-icon">
                     <i class="bi bi-ambulance-fill"></i>
                 </div>
 
-                <div class="bed-info">
+                <div class="bed-stat-content">
 
                     <span>Emergency Beds</span>
 
@@ -97,14 +130,14 @@
 
                     @if (Model.EmergencyBeds > 0)
                     {
-                        <small>
+                        <small class="available-status">
                             <i class="bi bi-check-circle-fill"></i>
                             Beds Available
                         </small>
                     }
                     else
                     {
-                        <small>
+                        <small class="unavailable-status">
                             <i class="bi bi-x-circle-fill"></i>
                             No Beds Available
                         </small>
@@ -123,11 +156,11 @@
 
             <div class="bed-stat-card general-card">
 
-                <div class="bed-icon">
+                <div class="bed-stat-icon">
                     <i class="bi bi-hospital-fill"></i>
                 </div>
 
-                <div class="bed-info">
+                <div class="bed-stat-content">
 
                     <span>General Beds</span>
 
@@ -135,14 +168,14 @@
 
                     @if (Model.GeneralBeds > 0)
                     {
-                        <small>
+                        <small class="available-status">
                             <i class="bi bi-check-circle-fill"></i>
                             Beds Available
                         </small>
                     }
                     else
                     {
-                        <small>
+                        <small class="unavailable-status">
                             <i class="bi bi-x-circle-fill"></i>
                             No Beds Available
                         </small>
@@ -157,172 +190,210 @@
     </div>
 
 
-    <!-- =========================
-         MAIN CONTENT
-         ========================= -->
+    <!-- ============================= -->
+    <!-- MAIN DASHBOARD -->
+    <!-- ============================= -->
 
     <div class="row g-4">
 
-        <!-- UPDATE FORM -->
+        <!-- ============================= -->
+        <!-- UPDATE BED FORM -->
+        <!-- ============================= -->
 
-        <form asp-action="UpdateBeds" method="post">
+        <div class="col-lg-8">
 
-            <input type="hidden" asp-for="HospitalId" />
+            <form asp-action="UpdateBeds" method="post">
 
-            <div class="card shadow rounded-4">
+                <input type="hidden" asp-for="HospitalId" />
 
-                <div class="card-header bg-primary text-white">
-                    <h4 class="mb-0">
-                        <i class="bi bi-pencil-square"></i>
-                        Update Bed Availability
-                    </h4>
+                <div class="dashboard-card">
+
+                    <div class="dashboard-card-header">
+
+                        <div>
+                            <i class="bi bi-pencil-square"></i>
+                            Update Bed Availability
+                        </div>
+
+                        <span class="update-badge">
+                            <i class="bi bi-arrow-repeat"></i>
+                            Live
+                        </span>
+
+                    </div>
+
+
+                    <div class="dashboard-card-body">
+
+                        <!-- Validation Summary -->
+
+                        <div asp-validation-summary="ModelOnly"
+                             class="alert alert-danger">
+                        </div>
+
+
+                        <!-- Hospital Name -->
+
+                        <div class="dashboard-form-group">
+
+                            <label asp-for="HospitalName">
+
+                                <i class="bi bi-hospital-fill"></i>
+                                Hospital Name
+
+                            </label>
+
+                            <div class="input-icon-wrapper">
+
+                                <i class="bi bi-building"></i>
+
+                                <input asp-for="HospitalName"
+                                       class="form-control"
+                                       readonly />
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ICU -->
+
+                        <div class="dashboard-form-group">
+
+                            <label asp-for="ICUBeds">
+
+                                <i class="bi bi-heart-pulse-fill text-danger"></i>
+                                ICU Beds
+
+                            </label>
+
+                            <div class="input-icon-wrapper">
+
+                                <i class="bi bi-hospital"></i>
+
+                                <input asp-for="ICUBeds"
+                                       type="number"
+                                       class="form-control"
+                                       min="0"
+                                       max="10000"
+                                       required />
+
+                            </div>
+
+                            <span asp-validation-for="ICUBeds"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+
+                        <!-- Emergency -->
+
+                        <div class="dashboard-form-group">
+
+                            <label asp-for="EmergencyBeds">
+
+                                <i class="bi bi-ambulance-fill text-primary"></i>
+                                Emergency Beds
+
+                            </label>
+
+                            <div class="input-icon-wrapper">
+
+                                <i class="bi bi-hospital"></i>
+
+                                <input asp-for="EmergencyBeds"
+                                       type="number"
+                                       class="form-control"
+                                       min="0"
+                                       max="10000"
+                                       required />
+
+                            </div>
+
+                            <span asp-validation-for="EmergencyBeds"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+
+                        <!-- General -->
+
+                        <div class="dashboard-form-group">
+
+                            <label asp-for="GeneralBeds">
+
+                                <i class="bi bi-hospital-fill text-success"></i>
+                                General Beds
+
+                            </label>
+
+                            <div class="input-icon-wrapper">
+
+                                <i class="bi bi-hospital"></i>
+
+                                <input asp-for="GeneralBeds"
+                                       type="number"
+                                       class="form-control"
+                                       min="0"
+                                       max="10000"
+                                       required />
+
+                            </div>
+
+                            <span asp-validation-for="GeneralBeds"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+
+                        <!-- Button -->
+
+                        <button type="submit"
+                                class="update-bed-button">
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                            Update Bed Availability
+
+                        </button>
+
+                    </div>
+
                 </div>
 
-                <div class="card-body">
+            </form>
 
-                    <!-- Validation Summary -->
-
-                    <div asp-validation-summary="ModelOnly"
-                         class="alert alert-danger">
-                    </div>
+        </div>
 
 
-                    <!-- Hospital Name -->
-
-                    <div class="mb-3">
-
-                        <label asp-for="HospitalName"
-                               class="form-label fw-semibold">
-
-                            <i class="bi bi-hospital-fill"></i>
-                            Hospital Name
-
-                        </label>
-
-                        <input asp-for="HospitalName"
-                               class="form-control"
-                               readonly />
-
-                    </div>
-
-
-                    <!-- ICU -->
-
-                    <div class="mb-3">
-
-                        <label asp-for="ICUBeds"
-                               class="form-label fw-semibold">
-
-                            <i class="bi bi-heart-pulse-fill text-danger"></i>
-                            ICU Beds
-
-                        </label>
-
-                        <input asp-for="ICUBeds"
-                               type="number"
-                               class="form-control"
-                               min="0"
-                               max="10000"
-                               required />
-
-                        <span asp-validation-for="ICUBeds"
-                              class="text-danger">
-                        </span>
-
-                    </div>
-
-
-                    <!-- Emergency -->
-
-                    <div class="mb-3">
-
-                        <label asp-for="EmergencyBeds"
-                               class="form-label fw-semibold">
-
-                            <i class="bi bi-ambulance-fill text-primary"></i>
-                            Emergency Beds
-
-                        </label>
-
-                        <input asp-for="EmergencyBeds"
-                               type="number"
-                               class="form-control"
-                               min="0"
-                               max="10000"
-                               required />
-
-                        <span asp-validation-for="EmergencyBeds"
-                              class="text-danger">
-                        </span>
-
-                    </div>
-
-
-                    <!-- General -->
-
-                    <div class="mb-3">
-
-                        <label asp-for="GeneralBeds"
-                               class="form-label fw-semibold">
-
-                            <i class="bi bi-hospital text-success"></i>
-                            General Beds
-
-                        </label>
-
-                        <input asp-for="GeneralBeds"
-                               type="number"
-                               class="form-control"
-                               min="0"
-                               max="10000"
-                               required />
-
-                        <span asp-validation-for="GeneralBeds"
-                              class="text-danger">
-                        </span>
-
-                    </div>
-
-
-                    <!-- Update Button -->
-
-                    <button type="submit"
-                            class="btn btn-success">
-
-                        <i class="bi bi-check-circle-fill"></i>
-                        Update Beds
-
-                    </button>
-
-                </div>
-
-            </div>
-
-        </form>
-
-
-        <!-- RIGHT SIDE -->
+        <!-- ============================= -->
+        <!-- RIGHT SIDE PANELS -->
+        <!-- ============================= -->
 
         <div class="col-lg-4">
 
-            <!-- LIVE STATUS -->
+
+            <!-- REAL TIME -->
 
             <div class="live-panel">
 
-                <div class="live-icon">
+                <div class="live-panel-icon">
                     <i class="bi bi-broadcast"></i>
                 </div>
 
                 <h4>Real-Time Updates</h4>
 
                 <p>
-                    Your bed availability is shared with users
-                    in real time using SignalR.
+                    Your hospital's bed availability is automatically
+                    shared with users in real time using SignalR.
                 </p>
 
                 <div class="signal-status">
 
-                    <span></span>
+                    <span class="signal-dot"></span>
 
                     SignalR Connected
 
@@ -335,7 +406,9 @@
 
             <div class="updated-panel">
 
-                <i class="bi bi-clock-history"></i>
+                <div class="updated-icon">
+                    <i class="bi bi-clock-history"></i>
+                </div>
 
                 <div>
 
@@ -353,152 +426,226 @@
 
             </div>
 
+
+            <!-- QUICK INFO -->
+
+            <div class="quick-info-panel">
+
+                <div class="quick-info-icon">
+                    <i class="bi bi-info-circle-fill"></i>
+                </div>
+
+                <div>
+
+                    <h5>Quick Tip</h5>
+
+                    <p>
+                        Keep your bed counts updated so ambulance
+                        services and patients can find available beds.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- PATIENT BOOKINGS -->
+    <!-- ============================= -->
+
+    <div class="booking-dashboard-card">
+
+        <div class="booking-header">
+
+            <div>
+
+                <h3>
+                    <i class="bi bi-calendar-check-fill"></i>
+                    Patient Bookings
+                </h3>
+
+                <p>
+                    View patients who have booked beds at your hospital.
+                </p>
+
+            </div>
+
+            @if (bookings != null)
+            {
+                <span class="booking-count">
+                    @bookings.Count Booking(s)
+                </span>
+            }
+
+        </div>
+
+
+        <div class="booking-table-container">
+
+            @if (bookings != null && bookings.Count > 0)
+            {
+
+                <div class="table-responsive">
+
+                    <table class="table booking-table align-middle">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Booking ID</th>
+                                <th>Patient</th>
+                                <th>Age</th>
+                                <th>Contact</th>
+                                <th>Bed Type</th>
+                                <th>Date</th>
+                                <th>Status</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            @foreach (var booking in bookings)
+                            {
+
+                                <tr>
+
+                                    <td>
+                                        <span class="booking-id">
+                                            #@booking.BookingId
+                                        </span>
+                                    </td>
+
+                                    <td>
+
+                                        <div class="patient-name">
+
+                                            <div class="patient-icon">
+                                                <i class="bi bi-person-fill"></i>
+                                            </div>
+
+                                            <span>
+                                                @booking.PatientName
+                                            </span>
+
+                                        </div>
+
+                                    </td>
+
+                                    <td>
+                                        @booking.PatientAge
+                                    </td>
+
+                                    <td>
+
+                                        <i class="bi bi-telephone-fill"></i>
+                                        @booking.Phone
+
+                                    </td>
+
+                                    <td>
+
+                                        @if (booking.BedType == "ICU")
+                                        {
+                                            <span class="bed-badge icu-badge">
+                                                <i class="bi bi-heart-pulse-fill"></i>
+                                                ICU
+                                            </span>
+                                        }
+                                        else if (booking.BedType == "Emergency")
+                                        {
+                                            <span class="bed-badge emergency-badge">
+                                                <i class="bi bi-ambulance-fill"></i>
+                                                Emergency
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="bed-badge general-badge">
+                                                <i class="bi bi-hospital-fill"></i>
+                                                General
+                                            </span>
+                                        }
+
+                                    </td>
+
+                                    <td>
+
+                                        <div class="booking-date">
+
+                                            <strong>
+                                                @booking.BookingDate.ToString("dd MMM yyyy")
+                                            </strong>
+
+                                            <small>
+                                                @booking.BookingDate.ToString("hh:mm tt")
+                                            </small>
+
+                                        </div>
+
+                                    </td>
+
+                                    <td>
+
+                                        @if (booking.Status == "Confirmed")
+                                        {
+                                            <span class="status-confirmed">
+                                                <i class="bi bi-check-circle-fill"></i>
+                                                Confirmed
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="status-other">
+                                                @booking.Status
+                                            </span>
+                                        }
+
+                                    </td>
+
+                                </tr>
+
+                            }
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            }
+            else
+            {
+
+                <div class="no-bookings">
+
+                    <div class="no-bookings-icon">
+                        <i class="bi bi-calendar-x"></i>
+                    </div>
+
+                    <h4>No Patient Bookings</h4>
+
+                    <p>
+                        No users have booked a bed at your hospital yet.
+                    </p>
+
+                </div>
+
+            }
+
         </div>
 
     </div>
 
 </div>
-@{
-    var bookings = ViewBag.Bookings as List<SmartBed.Models.Booking>;
-}
 
-<!-- Patient Bookings -->
 
-<div class="card shadow-lg border-0 rounded-4 mt-5">
-
-    <div class="card-header bg-primary text-white rounded-top-4 p-3">
-
-        <h4 class="mb-0">
-            <i class="bi bi-calendar-check-fill"></i>
-            Patient Bookings
-        </h4>
-
-    </div>
-
-    <div class="card-body p-0">
-
-        @if (bookings != null && bookings.Count > 0)
-        {
-            <div class="table-responsive">
-
-                <table class="table table-hover align-middle mb-0">
-
-                    <thead>
-                        <tr>
-                            <th>Booking ID</th>
-                            <th>Patient Name</th>
-                            <th>Age</th>
-                            <th>Phone</th>
-                            <th>Bed Type</th>
-                            <th>Booking Date</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-
-                        @foreach (var booking in bookings)
-                        {
-                            <tr>
-
-                                <td>
-                                    <span class="fw-bold text-primary">
-                                        #@booking.BookingId
-                                    </span>
-                                </td>
-
-                                <td>
-                                    <i class="bi bi-person-circle"></i>
-                                    @booking.PatientName
-                                </td>
-
-                                <td>
-                                    @booking.PatientAge
-                                </td>
-
-                                <td>
-                                    <i class="bi bi-telephone-fill"></i>
-                                    @booking.Phone
-                                </td>
-
-                                <td>
-
-                                    @if (booking.BedType == "ICU")
-                                    {
-                                        <span class="badge bg-danger">
-                                            <i class="bi bi-heart-pulse-fill"></i>
-                                            ICU
-                                        </span>
-                                    }
-                                    else if (booking.BedType == "Emergency")
-                                    {
-                                        <span class="badge bg-warning text-dark">
-                                            <i class="bi bi-ambulance-fill"></i>
-                                            Emergency
-                                        </span>
-                                    }
-                                    else
-                                    {
-                                        <span class="badge bg-primary">
-                                            <i class="bi bi-hospital-fill"></i>
-                                            General
-                                        </span>
-                                    }
-
-                                </td>
-
-                                <td>
-                                    @booking.BookingDate.ToString(
-                                             "dd MMM yyyy, hh:mm tt")
-                                </td>
-
-                                <td>
-
-                                    @if (booking.Status == "Confirmed")
-                                    {
-                                        <span class="badge bg-success">
-                                            <i class="bi bi-check-circle-fill"></i>
-                                            Confirmed
-                                        </span>
-                                    }
-                                    else
-                                    {
-                                        <span class="badge bg-secondary">
-                                            @booking.Status
-                                        </span>
-                                    }
-
-                                </td>
-
-                            </tr>
-                        }
-
-                    </tbody>
-
-                </table>
-
-            </div>
-        }
-        else
-        {
-            <div class="text-center p-5">
-
-                <i class="bi bi-calendar-x display-4 text-muted"></i>
-
-                <h5 class="mt-3">
-                    No Patient Bookings
-                </h5>
-
-                <p class="text-muted mb-0">
-                    No users have booked a bed at your hospital yet.
-                </p>
-
-            </div>
-        }
-
-    </div>
-
-</div>
 @section Scripts {
 
     @{
