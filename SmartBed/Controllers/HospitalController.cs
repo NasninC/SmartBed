@@ -21,7 +21,10 @@ namespace SmartBed.Controllers
         }
 
 
-        // Hospital Dashboard
+        // ==========================================
+        // HOSPITAL DASHBOARD
+        // ==========================================
+
         public IActionResult Dashboard()
         {
             int? hospitalId =
@@ -33,7 +36,7 @@ namespace SmartBed.Controllers
             }
 
             var hospital = _context.Hospital
-                .FirstOrDefault(h => h.HospitalId == hospitalId);
+                .FirstOrDefault(h => h.HospitalId == hospitalId.Value);
 
             if (hospital == null)
             {
@@ -42,7 +45,7 @@ namespace SmartBed.Controllers
 
             // Get bookings for this hospital only
             var bookings = _context.Bookings
-                .Where(b => b.HospitalId == hospitalId)
+                .Where(b => b.HospitalId == hospitalId.Value)
                 .OrderByDescending(b => b.BookingDate)
                 .ToList();
 
@@ -52,63 +55,124 @@ namespace SmartBed.Controllers
         }
 
 
-        // Update Bed Availability
+        // ==========================================
+        // UPDATE BED AVAILABILITY
+        // ==========================================
+
         [HttpPost]
-        public async Task<IActionResult> UpdateBeds(Hospital hospital)
+        public async Task<IActionResult> UpdateBeds(
+            int hospitalId,
+            int ICUBeds,
+            int EmergencyBeds,
+            int GeneralBeds)
         {
             // Check whether hospital is logged in
-            int? hospitalId = HttpContext.Session.GetInt32("HospitalId");
+            int? loggedHospitalId =
+                HttpContext.Session.GetInt32("HospitalId");
 
-            if (hospitalId == null)
+            if (loggedHospitalId == null)
             {
                 return RedirectToAction("Index", "Login");
             }
 
-            // Prevent negative bed values
-            if (hospital.ICUBeds < 0 ||
-                hospital.EmergencyBeds < 0 ||
-                hospital.GeneralBeds < 0)
+            // Security check:
+            // Hospital can update only its own beds
+            if (hospitalId != loggedHospitalId.Value)
             {
-                ModelState.AddModelError(
-                    "",
-                    "Bed availability cannot be a negative number."
-                );
+                return Unauthorized();
             }
 
-            // Check model validation
-            if (!ModelState.IsValid)
+
+            // ==========================================
+            // VALIDATE BED VALUES
+            // ==========================================
+
+            if (ICUBeds < 0 ||
+                EmergencyBeds < 0 ||
+                GeneralBeds < 0)
             {
-                var existingHospital = _context.Hospital
-                    .FirstOrDefault(h => h.HospitalId == hospitalId.Value);
+                TempData["Error"] =
+                    "Bed availability cannot be a negative number.";
 
-                if (existingHospital == null)
-                {
-                    return NotFound();
-                }
-
-                return View("Dashboard", existingHospital);
+                return RedirectToAction("Dashboard");
             }
 
-            // Find hospital from database
-            var data = _context.Hospital
-                .FirstOrDefault(h => h.HospitalId == hospitalId.Value);
 
-            if (data == null)
+            if (ICUBeds > 10000 ||
+                EmergencyBeds > 10000 ||
+                GeneralBeds > 10000)
+            {
+                TempData["Error"] =
+                    "Bed availability cannot exceed 10,000.";
+
+                return RedirectToAction("Dashboard");
+            }
+
+
+            // ==========================================
+            // FIND HOSPITAL
+            // ==========================================
+
+            var hospital = _context.Hospital
+                .FirstOrDefault(h => h.HospitalId == loggedHospitalId.Value);
+
+            if (hospital == null)
             {
                 return NotFound();
             }
 
-            // Update bed availability
-            data.ICUBeds = hospital.ICUBeds;
-            data.EmergencyBeds = hospital.EmergencyBeds;
-            data.GeneralBeds = hospital.GeneralBeds;
+
+            // ==========================================
+            // UPDATE BED COUNTS
+            // ==========================================
+
+            hospital.ICUBeds = ICUBeds;
+            hospital.EmergencyBeds = EmergencyBeds;
+            hospital.GeneralBeds = GeneralBeds;
+
+
+            // ==========================================
+            // SAVE TO DATABASE
+            // ==========================================
 
             _context.SaveChanges();
 
-            // Send real-time update
-            await _hubContext.Clients.All.SendAsync("ReceiveBedUpdate");
 
-            TempData["Success"] = "Bed availability updated successfully.";
+            // ==========================================
+            // SIGNALR REAL-TIME UPDATE
+            // ==========================================
+
+            await _hubContext.Clients.All
+                .SendAsync("ReceiveBedUpdate");
+
+
+            TempData["Success"] =
+                "Bed availability updated successfully.";
+
+
+            return RedirectToAction("Dashboard");
+        }
+        [HttpPost]
+        public IActionResult CompleteBooking(int bookingId)
+        {
+            int? hospitalId = HttpContext.Session.GetInt32("HospitalId");
+
+            if (hospitalId == null)
+                return RedirectToAction("Index", "Login");
+
+            var booking = _context.Bookings
+                .FirstOrDefault(b =>
+                    b.BookingId == bookingId &&
+                    b.HospitalId == hospitalId.Value);
+
+            if (booking == null)
+                return NotFound();
+
+            booking.Status = "Completed";
+
+            _context.SaveChanges();
+
+            TempData["Success"] = "Booking marked as completed successfully.";
 
             return RedirectToAction("Dashboard");
         }
