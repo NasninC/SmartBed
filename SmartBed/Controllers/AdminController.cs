@@ -87,6 +87,44 @@ namespace SmartBed.Controllers
 
             return RedirectToAction("Dashboard");
         }
+        [HttpPost]
+        public IActionResult VerifyHospital(int id)
+        {
+            var hospital = _context.Hospital
+                .FirstOrDefault(h => h.HospitalId == id);
 
+            if (hospital == null)
+            {
+                return NotFound();
+            }
+
+            hospital.VerificationStatus = "Verified";
+
+            _context.SaveChanges();
+
+            TempData["Success"] = "Hospital verified successfully.";
+
+            return RedirectToAction("Dashboard");
+        }
+
+        [HttpPost]
+        public IActionResult RejectHospital(int id)
+        {
+            var hospital = _context.Hospital
+                .FirstOrDefault(h => h.HospitalId == id);
+
+            if (hospital == null)
+            {
+                return NotFound();
+            }
+
+            hospital.VerificationStatus = "Rejected";
+
+            _context.SaveChanges();
+
+            TempData["Success"] = "Hospital rejected.";
+
+            return RedirectToAction("Dashboard");
+        }
     }
 }
