@@ -1,22 +1,21 @@
-using Microsoft.EntityFrameworkCore;
-using SmartBed.Models;
+using System.ComponentModel.DataAnnotations;
 
-namespace SmartBed.Data
+namespace SmartBed.Models
 {
-    public class ApplicationDbContext : DbContext
+    public class HospitalRating
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
-        {
-        }
+        [Key]
+        public int RatingId { get; set; }
 
-        public DbSet<Admin> Admin { get; set; }
+        public int HospitalId { get; set; }
 
-        public DbSet<Hospital> Hospital { get; set; }
+        public int UserId { get; set; }
 
-        public DbSet<User> Users { get; set; }
+        [Range(1, 5)]
+        public int Rating { get; set; }
 
-        public DbSet<Booking> Bookings { get; set; }
-        public DbSet<HospitalRating> HospitalRatings { get; set; }
+        public string Comment { get; set; } = string.Empty;
+
+        public DateTime RatingDate { get; set; }
     }
 }
