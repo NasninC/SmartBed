@@ -318,34 +318,29 @@ namespace SmartBed.Controllers
             int? userId = HttpContext.Session.GetInt32("UserId");
 
             if (userId == null)
-            {
                 return RedirectToAction("Index", "Login");
-            }
 
             var booking = _context.Bookings
                 .FirstOrDefault(b =>
                     b.BookingId == id &&
                     b.UserId == userId.Value &&
-                    b.Status == "Confirmed");
+                    b.Status == "Completed");
 
             if (booking == null)
-            {
                 return NotFound();
-            }
 
             var hospital = _context.Hospital
                 .FirstOrDefault(h => h.HospitalId == booking.HospitalId);
 
             if (hospital == null)
-            {
                 return NotFound();
-            }
 
             ViewBag.Hospital = hospital;
             ViewBag.BookingId = booking.BookingId;
 
             return View();
         }
+        [HttpPost]
         [HttpPost]
         public IActionResult Rate(
     int bookingId,
@@ -355,9 +350,7 @@ namespace SmartBed.Controllers
             int? userId = HttpContext.Session.GetInt32("UserId");
 
             if (userId == null)
-            {
                 return RedirectToAction("Index", "Login");
-            }
 
             if (rating < 1 || rating > 5)
             {
@@ -366,13 +359,16 @@ namespace SmartBed.Controllers
                 var bookingForError = _context.Bookings
                     .FirstOrDefault(b =>
                         b.BookingId == bookingId &&
-                        b.UserId == userId.Value);
+                        b.UserId == userId.Value &&
+                        b.Status == "Completed");
 
                 if (bookingForError != null)
                 {
                     ViewBag.Hospital = _context.Hospital
                         .FirstOrDefault(h =>
                             h.HospitalId == bookingForError.HospitalId);
+
+                    ViewBag.BookingId = bookingForError.BookingId;
                 }
 
                 return View();
@@ -382,14 +378,11 @@ namespace SmartBed.Controllers
                 .FirstOrDefault(b =>
                     b.BookingId == bookingId &&
                     b.UserId == userId.Value &&
-                    b.Status == "Confirmed");
+                    b.Status == "Completed");
 
             if (booking == null)
-            {
                 return NotFound();
-            }
 
-            // Prevent the same user from rating the same booking twice
             var existingRating = _context.HospitalRatings
                 .FirstOrDefault(r =>
                     r.UserId == userId.Value &&
@@ -397,11 +390,14 @@ namespace SmartBed.Controllers
 
             if (existingRating != null)
             {
-                ViewBag.Message = "You have already rated this hospital.";
+                ViewBag.Message =
+                    "You have already rated this hospital.";
 
                 ViewBag.Hospital = _context.Hospital
                     .FirstOrDefault(h =>
                         h.HospitalId == booking.HospitalId);
+
+                ViewBag.BookingId = booking.BookingId;
 
                 return View();
             }
@@ -411,9 +407,7 @@ namespace SmartBed.Controllers
                     h.HospitalId == booking.HospitalId);
 
             if (hospital == null)
-            {
                 return NotFound();
-            }
 
             var hospitalRating = new HospitalRating
             {
@@ -434,6 +428,20 @@ namespace SmartBed.Controllers
             return RedirectToAction(
                 "Confirmation",
                 new { id = booking.BookingId });
+        }
+        public IActionResult MyBookings()
+        {
+            int? userId = HttpContext.Session.GetInt32("UserId");
+
+            if (userId == null)
+                return RedirectToAction("Index", "Login");
+
+            var bookings = _context.Bookings
+                .Where(b => b.UserId == userId.Value)
+                .OrderByDescending(b => b.BookingDate)
+                .ToList();
+
+            return View(bookings);
         }
     }
 }
