@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace SmartBed.Models
 {
@@ -8,10 +8,10 @@ namespace SmartBed.Models
         public int HospitalId { get; set; }
 
         [Required]
-        public string HospitalName { get; set; }
+        public string HospitalName { get; set; } = string.Empty;
 
         [Required]
-        public string Location { get; set; }
+        public string Location { get; set; } = string.Empty;
 
         public int ICUBeds { get; set; }
 
@@ -19,12 +19,15 @@ namespace SmartBed.Models
 
         public int GeneralBeds { get; set; }
 
-        public string ContactNumber { get; set; }
+        public string ContactNumber { get; set; } = string.Empty;
 
         [Required]
-        public string Username { get; set; }
+        public string Username { get; set; } = string.Empty;
 
         [Required]
-        public string Password { get; set; }
+        public string Password { get; set; } = string.Empty;
+
+        // Hospital verification by DMO/Admin
+        public string VerificationStatus { get; set; } = "Pending";
     }
 }
