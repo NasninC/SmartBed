@@ -504,6 +504,7 @@
                                 <th>Bed Type</th>
                                 <th>Date</th>
                                 <th>Status</th>
+                                <th>Action</th>
 
                             </tr>
 
@@ -600,10 +601,49 @@
                                                 Confirmed
                                             </span>
                                         }
+                                        else if (booking.Status == "Completed")
+                                        {
+                                            <span class="status-completed">
+                                                <i class="bi bi-check-circle-fill"></i>
+                                                Completed
+                                            </span>
+                                        }
                                         else
                                         {
                                             <span class="status-other">
                                                 @booking.Status
+                                            </span>
+                                        }
+
+                                    </td>
+
+                                    <td>
+
+                                        @if (booking.Status == "Confirmed")
+                                        {
+                                            <form asp-action="CompleteBooking"
+                                                  method="post">
+
+                                                <input type="hidden"
+                                                       name="bookingId"
+                                                       value="@booking.BookingId" />
+
+                                                <button type="submit"
+                                                        class="complete-booking-btn"
+                                                        onclick="return confirm('Mark this booking as completed?');">
+
+                                                    <i class="bi bi-check-circle-fill"></i>
+                                                    Complete
+
+                                                </button>
+
+                                            </form>
+                                        }
+                                        else if (booking.Status == "Completed")
+                                        {
+                                            <span class="completed-label">
+                                                <i class="bi bi-check2-all"></i>
+                                                Completed
                                             </span>
                                         }
 
